@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/UI/Health Bar Outline.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Health Bar Full.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/UI/CharacterUI.gd" type="Script" id=3]
+
+[node name="CharacterUI" type="Control"]
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="VBoxContainer/CenterContainer"]
+margin_right = 500.0
+margin_bottom = 100.0
+step = 0.01
+value = 100.0
+texture_over = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

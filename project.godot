@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Scripts/Characters/Dummy.gd"
+}, {
+"base": "Node",
+"class": "Stats",
+"language": "GDScript",
+"path": "res://Scenes/Stats/Character/Base/BaseStats.gd"
+} ]
 _global_script_class_icons={
-
+"Enemy": "",
+"Stats": ""
 }
 
 [application]
@@ -20,12 +31,13 @@ config/icon="res://icon.png"
 
 [display]
 
-window/size/width=1080
-window/size/height=2340
-window/size/test_width=270
-window/size/test_height=585
+window/size/width=2340
+window/size/height=1080
+window/size/fullscreen=true
+window/size/test_width=585
+window/size/test_height=270
 window/stretch/mode="2d"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="keep_height"
 
 [rendering]
 
