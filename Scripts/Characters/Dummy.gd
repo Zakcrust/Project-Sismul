@@ -16,10 +16,12 @@ func get_target() -> Position2D:
 func get_stats() -> Stats:
 	return battle_stats
 
+func play_turn():
+	pass
+
 func hurt(damage : int) -> void:
 	battle_stats.health -= damage
 	$CharacterUI.set_health_bar(battle_stats.health)
-	
 	$Sprite.play("hurt")
 	yield($Sprite, "animation_finished")
 	$Sprite.play("idle")

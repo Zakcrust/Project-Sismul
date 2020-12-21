@@ -1,22 +1,26 @@
 extends Area2D
 
+
+class_name Player
+
 signal anim_finished()
 
 var enemies : Array
-
-
 var stats : Stats = Stats.new(10,10,3,2)
-
 var battle_stats : Stats = stats
 
 func _ready():
 	$AttackCast.collide_with_areas = true
+	$Sprite.play("idle")
 
 func get_stats() -> Stats:
 	return battle_stats
 
 func _on_Sprite_animation_finished():
 	emit_signal("anim_finished")
+
+func play_turn():
+	pass
 
 
 func move_and_attack(pos) -> void:
