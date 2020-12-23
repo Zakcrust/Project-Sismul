@@ -7,7 +7,7 @@ signal dead(object)
 class_name Player
 
 var enemies : Array
-var stats : Stats = Stats.new(10,10,3,2)
+var stats : Stats = Stats.new(10,10,3,2,3)
 var battle_stats : Stats = stats
 
 onready var target : Position2D = $Target setget , get_target

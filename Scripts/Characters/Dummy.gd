@@ -4,7 +4,7 @@ class_name Enemy
 
 signal end_turn
 
-var stats : Stats = Stats.new(10,10,4,0) 
+var stats : Stats = Stats.new(10,10,4,0,2) 
 var battle_stats : Stats = stats
 
 onready var target = $Target setget , get_target

@@ -39,15 +39,7 @@ func get_battlers():
 
 
 func play_turn():
-	
 	var new_index = (active_character.get_index() + 1) % get_child_count()
 	active_character = get_child(new_index)
 	print("Current turn : %s" % active_character.name)
 	active_character.play_turn()
-	
-#	battlers = get_battlers()
-#	if battlers.size() > 0:
-#		play_turn()
-#	else:
-#		return
-#

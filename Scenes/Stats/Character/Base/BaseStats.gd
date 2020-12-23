@@ -8,6 +8,7 @@ var energy : int = 0 setget set_energy, get_energy
 var damage : int = 0 setget set_damage, get_damage
 var armor : int = 0 setget set_armor, get_armor
 
+var speed : int = 0 setget set_speed, get_speed
 
 func set_health(value : int) -> void:
 	health = value
@@ -20,6 +21,9 @@ func set_damage(value : int) -> void:
 
 func set_armor(value : int) -> void:
 	armor = value
+
+func set_speed(value : int) -> void:
+	speed = value
 
 
 func get_health() -> int:
@@ -34,9 +38,13 @@ func get_damage() -> int:
 func get_armor() -> int:
 	return armor
 
-func _init(init_health = 10, init_energy = 10, init_damage = 1, init_armor = 0):
+func get_speed() -> int:
+	return speed
+
+func _init(init_health : int, init_energy : int, init_damage : int, init_armor : int, init_speed : int):
 	health = init_health
 	energy = init_energy
 	damage = init_damage
 	armor = init_armor
+	speed = init_speed
 

@@ -18,7 +18,10 @@ signal wrong()
 
 
 func _ready():
+	set_process(false)
+	yield($QuizInitial/AnimationPlayer, "animation_finished")
 	load_question()
+	set_process(true)
 
 
 func load_question() -> void:
