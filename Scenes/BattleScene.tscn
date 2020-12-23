@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Tileset/Nature.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Knight.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Dummy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/UI/BattleMenu.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Pirate.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Utils/BattleCharactersManager.gd" type="Script" id=5]
 
 [node name="BattleScene1" type="Node2D"]
@@ -21,14 +20,9 @@ script = ExtResource( 5 )
 [node name="Knight" parent="TurnQueue" instance=ExtResource( 2 )]
 position = Vector2( 394.803, 583.143 )
 
-[node name="Dummy" parent="TurnQueue" instance=ExtResource( 3 )]
+[node name="Pirate" parent="TurnQueue" instance=ExtResource( 3 )]
 position = Vector2( 1937.33, 547.275 )
 rotation = -3.14159
 scale = Vector2( 0.25, -0.25 )
 
-[node name="BattleMenu" parent="." instance=ExtResource( 4 )]
-margin_left = 0.0
-margin_top = 800.0
-margin_right = 0.0
-margin_bottom = 800.0
-[connection signal="attack" from="BattleMenu" to="TurnQueue/Knight" method="_on_BattleMenu_attack"]
+[node name="DeadPool" type="Node2D" parent="."]

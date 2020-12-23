@@ -1,0 +1,149 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/UI/orange_bar.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Boxes Dream.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/Quiz/QuizUI.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=5]
+size = 96
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 108
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 108
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 108
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 109
+font_data = ExtResource( 2 )
+
+[node name="Quiz" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -350.0
+margin_right = 600.0
+margin_bottom = 350.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuizContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -290.0
+margin_right = 600.0
+margin_bottom = 290.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="QuizContainer"]
+margin_right = 1200.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 800, 300 )
+color = Color( 0.360784, 0.32549, 0.32549, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="QuizContainer/ColorRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -500.0
+margin_top = -100.0
+margin_right = 500.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Question" type="Label" parent="QuizContainer/ColorRect/CenterContainer"]
+margin_right = 1000.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 1000, 200 )
+custom_fonts/font = SubResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnswerContainer" type="HBoxContainer" parent="QuizContainer"]
+margin_top = 320.0
+margin_right = 1200.0
+margin_bottom = 440.0
+custom_constants/separation = 100
+alignment = 1
+
+[node name="A" type="Button" parent="QuizContainer/AnswerContainer"]
+margin_left = 150.0
+margin_right = 550.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 400, 120 )
+custom_fonts/font = SubResource( 1 )
+text = "JAWABAN A"
+
+[node name="B" type="Button" parent="QuizContainer/AnswerContainer"]
+margin_left = 650.0
+margin_right = 1050.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 400, 120 )
+custom_fonts/font = SubResource( 2 )
+text = "Jawaban B"
+
+[node name="AnswerContainer2" type="HBoxContainer" parent="QuizContainer"]
+margin_top = 460.0
+margin_right = 1200.0
+margin_bottom = 580.0
+custom_constants/separation = 100
+alignment = 1
+
+[node name="C" type="Button" parent="QuizContainer/AnswerContainer2"]
+margin_left = 150.0
+margin_right = 550.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 400, 120 )
+custom_fonts/font = SubResource( 3 )
+text = "Jawaban C"
+
+[node name="D" type="Button" parent="QuizContainer/AnswerContainer2"]
+margin_left = 650.0
+margin_right = 1050.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 400, 120 )
+custom_fonts/font = SubResource( 4 )
+text = "Jawaban D"
+
+[node name="TimebarContainer" type="HBoxContainer" parent="QuizContainer"]
+margin_top = 600.0
+margin_right = 1200.0
+margin_bottom = 650.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeBar" type="TextureProgress" parent="QuizContainer/TimebarContainer"]
+margin_left = 100.0
+margin_right = 1100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 1000, 50 )
+step = 0.01
+value = 100.0
+texture_progress = ExtResource( 1 )
+[connection signal="pressed" from="QuizContainer/AnswerContainer/A" to="." method="_on_A_pressed"]
+[connection signal="pressed" from="QuizContainer/AnswerContainer/B" to="." method="_on_B_pressed"]
+[connection signal="pressed" from="QuizContainer/AnswerContainer2/C" to="." method="_on_C_pressed"]
+[connection signal="pressed" from="QuizContainer/AnswerContainer2/D" to="." method="_on_D_pressed"]
