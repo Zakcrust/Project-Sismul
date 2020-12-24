@@ -1,17 +1,12 @@
 extends Control
 
-var quiz : Quiz = Quiz.new(MultipleChoiceQuestion.new(Question.new("Pertanyaan", "Jawaban Benar"),
- MultipleChoice.new(["Jawaban Benar", 
-					"Jawaban Salah", 
-					"Jawaban Salah", 
-					"Jawaban Salah"])),
-					Reward.new(),
-					6.0)
 var answer : String
 var question_time : float
 var time_reduction : float
+var reward
 
-var time_count : float = 0
+var quiz : Quiz
+var character : Character
 
 signal correct()
 signal wrong()
@@ -30,6 +25,7 @@ func load_question() -> void:
 	$QuizContainer/ColorRect/CenterContainer/Question.text = quiz.multiple_choice_question.question.question
 	answer = quiz.multiple_choice_question.question.answer
 	question_time = quiz.time
+	reward = quiz.reward
 	time_reduction = $QuizContainer/TimebarContainer/TimeBar.max_value / question_time
 	print(time_reduction)
 	#load answer
@@ -38,16 +34,19 @@ func load_question() -> void:
 	$QuizContainer/AnswerContainer2/C.text = quiz.multiple_choice_question.choices.choices[2]
 	$QuizContainer/AnswerContainer2/D.text = quiz.multiple_choice_question.choices.choices[3]
 
+	print("question loaded")
 
 func check_answer(ans : String) -> void:
+	disable_buttons()
 	if ans == answer:
 		print("Correct")
-		emit_signal("correct")
 		set_process(false)
 	else:
 		print("Wrong")
-		emit_signal("wrong")
 		set_process(false)
+	yield(get_tree().create_timer(2.0), "timeout")
+	character.activate()
+	queue_free()
 	
 
 func _on_A_pressed(): 
@@ -59,11 +58,19 @@ func _on_B_pressed():
 
 
 func _on_C_pressed():
-	check_answer($QuizContainer/AnswerContainer/C.text)
+	check_answer($QuizContainer/AnswerContainer2/C.text)
 
 
 func _on_D_pressed():
-	check_answer($QuizContainer/AnswerContainer/D.text)
+	check_answer($QuizContainer/AnswerContainer2/D.text)
+
+
+func disable_buttons() -> void:
+	$QuizContainer/AnswerContainer/A.disabled = true
+	$QuizContainer/AnswerContainer/B.disabled = true
+	$QuizContainer/AnswerContainer2/C.disabled = true
+	$QuizContainer/AnswerContainer2/D.disabled = true
+
 
 func _process(delta):
 	$QuizContainer/TimebarContainer/TimeBar.value -= (time_reduction * delta)

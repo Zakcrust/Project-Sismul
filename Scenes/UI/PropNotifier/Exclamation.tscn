@@ -36,11 +36,10 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_top = -8.39952
-margin_right = 22.0
-margin_bottom = 89.6005
+margin_right = 14.0
+margin_bottom = 98.0
 custom_fonts/font = SubResource( 1 )
-text = "?"
+text = "!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
