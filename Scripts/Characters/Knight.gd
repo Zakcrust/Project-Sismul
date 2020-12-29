@@ -1,10 +1,9 @@
 extends Area2D
 
+class_name Player
 
 signal end_turn()
 signal dead(object)
-
-class_name Player
 
 var enemies : Array
 var stats : Stats = Stats.new(10,10,3,2,3)
@@ -23,6 +22,13 @@ func _ready():
 func get_stats() -> Stats:
 	return battle_stats
 
+func victory() -> void:
+	$Sprite.play("cast_skill_in")
+	yield($Sprite, "animation_finished")
+	$Sprite.play("cast_skill_out")
+	yield($Sprite, "animation_finished")
+	$Sprite.play("idle")
+
 func play_turn():
 	$State.initialize()
 
@@ -32,3 +38,13 @@ func hurt(damage : int) -> void:
 	$Sprite.play("hurt")
 	yield($Sprite, "animation_finished")
 	$Sprite.play("idle")
+	check_health()
+
+func get_current_state() -> String:
+	return $State.state.name
+
+func check_health() -> void:
+	if battle_stats.health <= 0:
+		battle_stats.health = 0
+		$CharacterUI.hide()
+		$State.change_to("Dead")

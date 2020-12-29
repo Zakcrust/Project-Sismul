@@ -7,9 +7,12 @@ var STAGE_2 = "STAGE_2" setget , get_stage_2
 var STAGE_3 = "STAGE_3" setget , get_stage_3
 
 var scene_list = {
-	STAGE_1 : Scene.new("res://Scenes/Map/DefaultScene/Stage1.tscn","res://Scenes/Map/SavedScene/Stage1.tscn"),
-	STAGE_2 : Scene.new("res://Scenes/Map/DefaultScene/Stage2.tscn", "res://Scenes/Map/SavedScene/Stage2.tscn"),
-	STAGE_3 : Scene.new("res://Scenes/Map/DefaultScene/Stage3.tscn", "res://Scenes/Map/SavedScene/Stage3.tscn")
+	STAGE_1 : Scene.new("res://Scenes/Map/DefaultScene/Stage1.tscn","res://Scenes/Map/SavedScene/Stage1.tscn",
+				load("res://Scenes/BattleScene.tscn")),
+	STAGE_2 : Scene.new("res://Scenes/Map/DefaultScene/Stage2.tscn", "res://Scenes/Map/SavedScene/Stage2.tscn",
+				load("res://Scenes/BattleScene.tscn")),
+	STAGE_3 : Scene.new("res://Scenes/Map/DefaultScene/Stage3.tscn", "res://Scenes/Map/SavedScene/Stage3.tscn",
+				load("res://Scenes/BattleScene.tscn"))
 }
 
 func get_scene(scene_name : String) -> Scene:

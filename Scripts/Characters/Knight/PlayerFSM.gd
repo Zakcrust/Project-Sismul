@@ -4,7 +4,7 @@ class_name StateMachine
 
 const DEBUG = true
 
-var state: Object
+var state: Node
 
 export (NodePath) var character_path
 export (NodePath) var sprite_path

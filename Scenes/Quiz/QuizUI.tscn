@@ -17,11 +17,11 @@ font_data = ExtResource( 2 )
 size = 108
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=4]
 size = 108
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 108
 font_data = ExtResource( 2 )
 
@@ -110,7 +110,7 @@ margin_left = 150.0
 margin_right = 550.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 400, 120 )
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 4 )
 text = "Jawaban C"
 
 [node name="D" type="Button" parent="QuizContainer/AnswerContainer2"]
@@ -118,7 +118,7 @@ margin_left = 650.0
 margin_right = 1050.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 400, 120 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "Jawaban D"
 
 [node name="TimebarContainer" type="HBoxContainer" parent="QuizContainer"]

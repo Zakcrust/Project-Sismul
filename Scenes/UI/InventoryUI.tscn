@@ -3,11 +3,11 @@
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/InventoryUI.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 108
 font_data = ExtResource( 1 )
 
@@ -86,7 +86,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
 margin_bottom = -50.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 max_columns = 12
 same_column_width = true
 icon_mode = 0
@@ -133,6 +133,6 @@ __meta__ = {
 [node name="Close" type="Button" parent="Button/HBoxContainer"]
 margin_right = 121.0
 margin_bottom = 104.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Close"
 [connection signal="pressed" from="Button/HBoxContainer/Close" to="." method="_on_Close_pressed"]

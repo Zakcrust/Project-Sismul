@@ -4,14 +4,14 @@ class_name EnemyStateMachine
 
 const DEBUG = true
 
-var state: Object
+var state: Node
 
 export (NodePath) var character_path
 export (NodePath) var sprite_path
 
 
-onready var character : Enemy = get_node(character_path)
-onready var sprite : AnimatedSprite = get_node(sprite_path)
+onready var character : Area2D = get_node(character_path)
+onready var sprite : Node = get_node(sprite_path)
 
 
 var history = []

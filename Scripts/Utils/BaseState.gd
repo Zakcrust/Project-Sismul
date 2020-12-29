@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: StateMachine
+var fsm: PlayerStateMachine
 
 func next(next_state):
 	get_tree()

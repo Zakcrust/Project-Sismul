@@ -35,7 +35,7 @@ animations = [ {
 "frames": [ ExtResource( 17 ), ExtResource( 11 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 15 ), ExtResource( 14 ), ExtResource( 12 ), ExtResource( 19 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "move",
-"speed": 5.0
+"speed": 12.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -48,7 +48,7 @@ script = ExtResource( 24 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 6
+frame = 1
 playing = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -66,3 +66,10 @@ script = ExtResource( 22 )
 
 [node name="Interact" type="Node" parent="StateMachine"]
 script = ExtResource( 23 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2( 0.6, 0.6 )
+limit_left = 0
+limit_top = 0
+limit_right = 2340
+limit_bottom = 1080

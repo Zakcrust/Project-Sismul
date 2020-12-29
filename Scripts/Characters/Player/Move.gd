@@ -41,7 +41,15 @@ func process(_delta):
 func _interact() -> void:
 	if Input.is_action_just_pressed("interact"):
 		if(fsm.character.object_to_interact != null):
-			fsm.character.object_to_interact.interact(fsm.character)
+			if(fsm.character.object_to_interact.has_method("interact")):
+				fsm.character.object_to_interact.interact(fsm.character)
+			elif(fsm.character.object_to_interact.has_method("travel")):
+				fsm.character.object_to_interact.travel()
+			elif(fsm.character.object_to_interact.has_method("fight")):
+				fsm.character.object_to_interact.fight(fsm.character.player_battler)
+				SceneLoader.player_last_position = fsm.character.global_position
+				fsm.character.queue_free()
+				return
 			next("Interact")
 
 func physics_process(_delta):

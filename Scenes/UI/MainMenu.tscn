@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/UI/Button/startbutton2.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/MainMenu.gd" type="Script" id=2]
-
-[sub_resource type="DynamicFont" id=1]
-size = 256
-font_data = ExtResource( 1 )
+[ext_resource path="res://Assets/UI/main_menu.tres" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/Button/startbutton1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/gamelogo.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/Button/buttonoptions1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/Button/buttonoptions2.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/Button/buttonexit1.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/Button/buttonexit2.png" type="Texture" id=9]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -15,18 +18,65 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="Button" parent="."]
+[node name="mainmenu0" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Play" type="TextureButton" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -109.0
-margin_top = -119.0
-margin_right = 109.0
-margin_bottom = 119.0
-custom_fonts/font = SubResource( 1 )
-text = "Play"
+margin_left = -223.5
+margin_top = -82.0
+margin_right = 311.5
+margin_bottom = 198.0
+rect_scale = Vector2( 0.8, 0.8 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Options" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -867.5
+margin_top = -380.0
+margin_right = -332.5
+margin_bottom = -99.9999
+rect_scale = Vector2( 0.8, 0.8 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 332.5
+margin_top = -380.0
+margin_right = 867.5
+margin_bottom = -99.9999
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( 107, 56 )
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gamelogo" type="Sprite" parent="."]
+position = Vector2( 1170, 224 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 5 )
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

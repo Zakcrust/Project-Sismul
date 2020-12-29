@@ -1,7 +1,5 @@
 extends Area2D
 
-class_name Enemy
-
 signal end_turn
 
 var stats : Stats = Stats.new(10,10,4,0,2) 

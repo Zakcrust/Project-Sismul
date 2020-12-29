@@ -23,8 +23,8 @@ func enter() -> void:
 func attack() -> void:
 	enemies = fsm.character.get_parent().get_enemies()
 	print(enemies)
-	if enemies.size() == 1:
-		var enemy : Enemy = enemies[0]
+	if enemies.size() >= 1:
+		var enemy = enemies[0]
 		move_and_attack(enemy.target.global_position)
 
 func move_and_attack(pos : Vector2) -> void:
@@ -52,7 +52,7 @@ func move_and_attack(pos : Vector2) -> void:
 
 func cast_attack() -> void:
 	var attacked_enemy  = attack_cast.get_collider()
-	if attacked_enemy is Enemy:
+	if attacked_enemy.is_in_group("Enemy"):
 		attacked_enemy.hurt(fsm.character.battle_stats.damage)
 
 
