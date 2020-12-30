@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Assets/Sprites/chars/2_KNIGHT/Knight_02__ATTACK_005.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/chars/2_KNIGHT/Knight_02__ATTACK_003.png" type="Texture" id=2]
@@ -63,6 +63,7 @@
 [ext_resource path="res://Assets/UI/Icon/potion_no_background.tres" type="Texture" id=61]
 [ext_resource path="res://Scripts/Characters/Knight/State/EndTurn.gd" type="Script" id=62]
 [ext_resource path="res://Scripts/Characters/Knight/State/Dead.gd" type="Script" id=63]
+[ext_resource path="res://Scripts/Characters/Knight/State/Flee.gd" type="Script" id=64]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -71,9 +72,14 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "move",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": false,
-"name": "cast_skill_in",
+"name": "cast_skill_out",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ) ],
@@ -91,15 +97,10 @@ animations = [ {
 "name": "dead",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": false,
-"name": "cast_skill_out",
+"name": "cast_skill_in",
 "speed": 10.0
-}, {
-"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
-"loop": true,
-"name": "move",
-"speed": 15.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -195,7 +196,6 @@ script = ExtResource( 21 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 6
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
@@ -248,7 +248,6 @@ anims/cast = SubResource( 3 )
 script = ExtResource( 60 )
 
 [node name="Potion" type="Sprite" parent="State/Heal"]
-visible = false
 position = Vector2( 20, -6 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 61 )
@@ -265,6 +264,7 @@ process_material = SubResource( 8 )
 anims/use_potion = SubResource( 9 )
 
 [node name="Flee" type="Node" parent="State"]
+script = ExtResource( 64 )
 
 [node name="EndTurn" type="Node" parent="State"]
 script = ExtResource( 62 )

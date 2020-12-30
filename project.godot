@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Buff",
+"language": "GDScript",
+"path": "res://Scenes/Stats/Character/Base/Buff.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Character",
 "language": "GDScript",
@@ -50,9 +55,29 @@ _global_script_classes=[ {
 "path": "res://Scripts/Characters/EnemyFSM.gd"
 }, {
 "base": "Node",
+"class": "Inventory",
+"language": "GDScript",
+"path": "res://Scripts/Utils/Inventory.gd"
+}, {
+"base": "Node",
+"class": "InventoryData",
+"language": "GDScript",
+"path": "res://Scripts/Utils/InventoryData/Default/InventoryData.gd"
+}, {
+"base": "Node",
 "class": "Item",
 "language": "GDScript",
 "path": "res://Scripts/Utils/Item.gd"
+}, {
+"base": "Node",
+"class": "ItemEffect",
+"language": "GDScript",
+"path": "res://Scripts/Item/Base/ItemEffect.gd"
+}, {
+"base": "Node",
+"class": "ItemEffectTypes",
+"language": "GDScript",
+"path": "res://Scripts/Item/Base/ItemEffectTypes.gd"
 }, {
 "base": "Node",
 "class": "ItemReward",
@@ -135,11 +160,17 @@ _global_script_classes=[ {
 "path": "res://Scenes/Stats/Character/Base/BaseStats.gd"
 }, {
 "base": "Node",
+"class": "StatsBuff",
+"language": "GDScript",
+"path": "res://Scenes/Stats/Character/Base/StatsBuff.gd"
+}, {
+"base": "Node",
 "class": "TurnQueue",
 "language": "GDScript",
 "path": "res://Scripts/Utils/BattleCharactersManager.gd"
 } ]
 _global_script_class_icons={
+"Buff": "",
 "Character": "",
 "Dialog": "",
 "DialogAnswer": "",
@@ -148,7 +179,11 @@ _global_script_class_icons={
 "Enemy": "",
 "EnemyCharacter": "",
 "EnemyStateMachine": "",
+"Inventory": "",
+"InventoryData": "",
 "Item": "",
+"ItemEffect": "",
+"ItemEffectTypes": "",
 "ItemReward": "",
 "MultipleChoice": "",
 "MultipleChoiceQuestion": "",
@@ -165,6 +200,7 @@ _global_script_class_icons={
 "StatType": "",
 "StateMachine": "",
 "Stats": "",
+"StatsBuff": "",
 "TurnQueue": ""
 }
 
@@ -177,11 +213,12 @@ config/icon="res://Assets/UI/gamelogo.png"
 
 [autoload]
 
-RedeemReward="*res://Scripts/Quiz/Reward/RedeemReward.gd"
 SceneLoader="*res://Singleton/SceneLoader.gd"
 QuestionPool="*res://Scripts/Utils/QuestionPool.gd"
 QuizLoader="*res://Singleton/QuizLoader.gd"
 BattleData="*res://Singleton/BattleData.gd"
+PlayerData="*res://Singleton/PlayerData.gd"
+ItemManager="*res://Scripts/Item/Base/ItemManager.gd"
 
 [display]
 

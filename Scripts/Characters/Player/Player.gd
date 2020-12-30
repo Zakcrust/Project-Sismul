@@ -4,6 +4,9 @@ class_name Character
 
 var player_battler : PackedScene = load("res://Scenes/Battlers/Knight.tscn")
 
+var boundary : Vector2 = Vector2(2340, 952)
+
+
 func _ready():
 	$Camera2D.current = true
 

@@ -1,0 +1,9 @@
+extends Node
+
+class_name ItemEffectTypes
+
+const HEALTH_BOOST = "HEALTH_BOOST"
+const ATTACK_BOOST = "ATTACK_BOOST"
+const ENERGY_BOOST = "ENERGY_BOOST"
+const DAMAGE_BOOST = "DAMAGE_BOOST"
+const SPEED_BOOST = "SPEED_BOOST"

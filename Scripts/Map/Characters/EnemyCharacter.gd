@@ -14,6 +14,9 @@ func _ready():
 		battler_instances.append(battler.instance())
 
 func fight(player : PackedScene) -> void:
+	battler_instances.clear()
+	for battler in battlers:
+		battler_instances.append(battler.instance())
 	to_battle(player)
 
 

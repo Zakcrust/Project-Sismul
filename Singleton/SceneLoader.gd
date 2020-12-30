@@ -40,10 +40,10 @@ func load_battle_scene(battlers : Array) -> void:
 
 func quit_battle_scene(win : bool) -> void:
 	var children = get_tree().get_root().get_children()
+	var current_battle_scene = children.back()
 	get_tree().current_scene = children[-2]
+	current_battle_scene.queue_free()
 	get_tree().current_scene.spawn_player(player_last_position)
-	get_tree().get_root().remove_child(children.back())
-	
 	if win:
 		BattleData.enemy_character.queue_free()
 		BattleData.enemy_character = null

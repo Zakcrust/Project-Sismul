@@ -6,8 +6,8 @@ signal end_turn()
 signal dead(object)
 
 var enemies : Array
-var stats : Stats = Stats.new(10,10,3,2,3)
-var battle_stats : Stats = stats
+var stats : Stats
+var battle_stats : Stats
 
 onready var target : Position2D = $Target setget , get_target
 
@@ -15,9 +15,14 @@ func get_target() -> Position2D:
 	return target
 
 func _ready():
+	stats = PlayerData.stats
+	battle_stats = stats
 	$AttackCast.collide_with_areas = true
 	$Sprite.play("idle")
-	$CharacterUI.set_health_bar_max_value(stats.health)
+	update_health_bar_ui()
+
+func update_health_bar_ui() -> void:
+	$CharacterUI.set_health_bar_max_value(battle_stats.health)
 
 func get_stats() -> Stats:
 	return battle_stats
@@ -33,6 +38,7 @@ func play_turn():
 	$State.initialize()
 
 func hurt(damage : int) -> void:
+	print("damage dealt : %s" % (damage - battle_stats.armor))
 	battle_stats.health -= (damage - battle_stats.armor)
 	$CharacterUI.set_health_bar(battle_stats.health)
 	$Sprite.play("hurt")

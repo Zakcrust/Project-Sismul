@@ -35,6 +35,9 @@ func process(_delta):
 	else:
 		fsm.sprite.play("move")
 
+	fsm.character.position.x = clamp(fsm.character.position.x, 0, fsm.character.boundary.x)
+	fsm.character.position.y = clamp(fsm.character.position.y, 0, fsm.character.boundary.y)
+	
 	_interact()
 
 
@@ -51,6 +54,7 @@ func _interact() -> void:
 				fsm.character.queue_free()
 				return
 			next("Interact")
+		print("No object to interact!")
 
 func physics_process(_delta):
 	pass

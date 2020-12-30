@@ -8,3 +8,7 @@ func spawn_player(pos : Vector2) -> void:
 	var player = player_scene.instance()
 	player.position = pos
 	add_child(player)
+
+
+func _on_Stage1_tree_exiting():
+	pass # Replace with function body.
