@@ -73,35 +73,35 @@ animations = [ {
 "name": "idle",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
-"loop": true,
-"name": "move",
-"speed": 15.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
-"loop": false,
-"name": "cast_skill_out",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
-"loop": false,
-"name": "cast_skill_in",
-"speed": 10.0
-}, {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "attack",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 20 ) ],
+"loop": false,
+"name": "dead",
+"speed": 20.0
 }, {
 "frames": [ ExtResource( 33 ), ExtResource( 32 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 35 ), ExtResource( 40 ), ExtResource( 34 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 39 ) ],
 "loop": false,
 "name": "hurt",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 19 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 12 ), ExtResource( 11 ), ExtResource( 14 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": false,
-"name": "dead",
-"speed": 20.0
+"name": "cast_skill_out",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "move",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "cast_skill_in",
+"speed": 10.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -197,7 +197,7 @@ script = ExtResource( 21 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 6
+frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
@@ -250,6 +250,7 @@ anims/cast = SubResource( 3 )
 script = ExtResource( 60 )
 
 [node name="Potion" type="Sprite" parent="State/Heal"]
+visible = false
 position = Vector2( 20, -6 )
 scale = Vector2( 4, 4 )
 texture = ExtResource( 61 )

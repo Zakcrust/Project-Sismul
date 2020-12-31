@@ -32,7 +32,7 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-rect_scale = Vector2( 3.16897, 3.16897 )
+rect_scale = Vector2( 3.11685, 3.11685 )
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false

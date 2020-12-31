@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/GameUI.gd" type="Script" id=2]
@@ -12,6 +12,10 @@ size = 96
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 96
 font_data = ExtResource( 1 )
 
@@ -54,17 +58,28 @@ margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 text = "Inventory"
 
-[node name="Button" type="Button" parent="GameUI/HBoxContainer"]
+[node name="Sound" type="Button" parent="GameUI/HBoxContainer"]
 margin_left = 248.0
-margin_right = 372.0
+margin_right = 456.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 2 )
-text = "Sound"
+toggle_mode = true
+text = "Sound : ON"
 
-[node name="Button2" type="Button" parent="GameUI/HBoxContainer"]
-margin_left = 422.0
-margin_right = 533.0
+[node name="Music" type="Button" parent="GameUI/HBoxContainer"]
+margin_left = 506.0
+margin_right = 701.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 3 )
-text = "Music"
+toggle_mode = true
+text = "Music : ON"
+
+[node name="Help" type="Button" parent="GameUI/HBoxContainer"]
+margin_left = 751.0
+margin_right = 835.0
+margin_bottom = 96.0
+custom_fonts/font = SubResource( 4 )
+text = "Help"
 [connection signal="pressed" from="GameUI/HBoxContainer/Inventory" to="." method="_on_Inventory_pressed"]
+[connection signal="toggled" from="GameUI/HBoxContainer/Sound" to="." method="_on_Sound_toggled"]
+[connection signal="toggled" from="GameUI/HBoxContainer/Music" to="." method="_on_Music_toggled"]

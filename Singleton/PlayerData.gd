@@ -26,5 +26,7 @@ func redeem_stat_reward(reward : StatReward) -> void:
 		StatType.ENERGY:
 			stats.energy += reward.reward.amount
 
-func redeem_item_reward(reward) -> void:
-	pass
+func redeem_item_reward(reward : ItemReward) -> void:
+	if reward is ItemReward:
+		for i in range(0, reward.reward.amount):
+			inventory.items.append(reward.item)

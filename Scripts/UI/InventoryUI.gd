@@ -5,6 +5,7 @@ var selected_item_id : int = 0
 var loaded_items : Array
 
 signal done()
+signal cancel()
 
 func _ready():
 	add_item(PlayerData.inventory.items)
@@ -19,6 +20,7 @@ func add_item(items : Array) -> void:
 
 func _on_Close_pressed():
 	get_tree().paused = false
+	emit_signal("cancel")
 	queue_free()
 
 

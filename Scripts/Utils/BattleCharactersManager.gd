@@ -5,6 +5,8 @@ class_name TurnQueue
 var active_character : Node2D
 var battlers : Array
 
+var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
+
 signal send_to_dead_pool(obj)
 signal set_post_battle_ui(value)
 
@@ -31,6 +33,7 @@ func initialize():
 		return
 	active_character = get_child(0)
 	battlers = get_battlers()
+	battlers.sort_custom(self, "sort_battlers")
 	for battler in battlers:
 		battler.connect("end_turn", self, "play_turn")
 	print("Current turn : %s" % active_character.name)
@@ -39,6 +42,8 @@ func initialize():
 func get_battlers():
 	return get_children()
 
+static func sort_battlers(a, b) -> bool:
+	return a.stats.speed > b.stats.speed
 
 func play_turn():
 	if not living_enemies():
@@ -79,7 +84,20 @@ func defeat() -> void:
 
 func leave_scene(win : bool) -> void:
 	yield(get_tree().create_timer(2.0), "timeout")
-	SceneLoader.quit_battle_scene(win)
+	if win:
+		emit_signal("set_post_battle_ui", "")
+		var reward_ui_instance = reward_ui.instance()
+		var reward = BattleData.battle_reward
+		PlayerData.add_reward(reward)
+		if reward is ItemReward:
+			reward_ui_instance.load_item(load(reward.item.item_asset_path), reward.item.item_name + " x%s" % reward.reward.amount)
+		elif reward is StatReward:
+			reward_ui_instance.load_item(load(reward.sprite_path), reward.stat_type + " +%s" % reward.reward.amount)
+		add_child(reward_ui_instance)
+		yield(reward_ui_instance,"tree_exited")
+		SceneLoader.quit_battle_scene(win)
+	else:
+		SceneLoader.quit_battle_scene(win)
 
 func living_player() -> bool:
 	for child in get_children():

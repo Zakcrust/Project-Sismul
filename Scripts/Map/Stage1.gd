@@ -9,6 +9,11 @@ func spawn_player(pos : Vector2) -> void:
 	player.position = pos
 	add_child(player)
 
+func show_ui() -> void:
+	$GameUI/GameUI.show()
+
+func hide_ui() -> void:
+	$GameUI/GameUI.hide()
 
 func _on_Stage1_tree_exiting():
 	pass # Replace with function body.

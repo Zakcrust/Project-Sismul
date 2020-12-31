@@ -3,6 +3,8 @@ extends Node2D
 class_name EnemyCharacter
 
 export (Array, PackedScene) var battlers
+export (PackedScene) var reward
+
 
 var battler_instances : Array
 
@@ -22,6 +24,7 @@ func fight(player : PackedScene) -> void:
 
 func to_battle(player : PackedScene) -> void:
 	BattleData.enemy_character = self
+	BattleData.battle_reward = reward.instance()
 	battler_instances.append(player.instance())
 	SceneLoader.load_battle_scene(battler_instances)
 

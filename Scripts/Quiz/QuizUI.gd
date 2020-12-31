@@ -8,19 +8,21 @@ var reward
 var quiz : Quiz
 var character : Character
 
-signal correct()
+signal correct(reward)
 signal wrong()
 
 
 func _ready():
+	$Camera2D.current = true
 	set_process(false)
-	yield($QuizInitial/AnimationPlayer, "animation_finished")
+	yield($AnimationPlayer, "animation_finished")
 	load_question()
 	set_process(true)
 
 
 func load_question() -> void:
-	
+	connect("correct", character, "redeem_reward")
+	connect("wrong", character, "remove_object")
 	#load question and answer
 	$QuizContainer/ColorRect/CenterContainer/Question.text = quiz.multiple_choice_question.question.question
 	answer = quiz.multiple_choice_question.question.answer
@@ -28,48 +30,53 @@ func load_question() -> void:
 	reward = quiz.reward
 	time_reduction = $QuizContainer/TimebarContainer/TimeBar.max_value / question_time
 	print(time_reduction)
+	var choices : Array = quiz.multiple_choice_question.choices.choices
+	choices.shuffle()
 	#load answer
-	$QuizContainer/AnswerContainer/A.text = quiz.multiple_choice_question.choices.choices[0]
-	$QuizContainer/AnswerContainer/B.text = quiz.multiple_choice_question.choices.choices[1]
-	$QuizContainer/AnswerContainer2/C.text = quiz.multiple_choice_question.choices.choices[2]
-	$QuizContainer/AnswerContainer2/D.text = quiz.multiple_choice_question.choices.choices[3]
-
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer/A/Text.text = choices[0]
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer/B/Text.text = choices[1]
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/C/Text.text = choices[2]
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/D/Text.text = choices[3]
+	$QuizContainer/ColorRect/HBoxContainer.show()
+	$QuizContainer/ColorRect/CenterContainer.show()
 	print("question loaded")
 
 func check_answer(ans : String) -> void:
 	disable_buttons()
+	set_process(false)
+	yield(get_tree().create_timer(1.0), "timeout")
 	if ans == answer:
 		print("Correct")
-		set_process(false)
+		emit_signal("correct", reward)
 	else:
 		print("Wrong")
-		set_process(false)
-	yield(get_tree().create_timer(2.0), "timeout")
+		emit_signal("wrong")
 	character.activate()
+	character.enable_camera()
 	queue_free()
 	
 
 func _on_A_pressed(): 
-	check_answer($QuizContainer/AnswerContainer/A.text)
+	check_answer($QuizContainer/ColorRect/HBoxContainer/AnswerContainer/A/Text.text)
 
 
 func _on_B_pressed():
-	check_answer($QuizContainer/AnswerContainer/B.text)
+	check_answer($QuizContainer/ColorRect/HBoxContainer/AnswerContainer/B/Text.text)
 
 
 func _on_C_pressed():
-	check_answer($QuizContainer/AnswerContainer2/C.text)
+	check_answer($QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/C/Text.text)
 
 
 func _on_D_pressed():
-	check_answer($QuizContainer/AnswerContainer2/D.text)
+	check_answer($QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/D/Text.text)
 
 
 func disable_buttons() -> void:
-	$QuizContainer/AnswerContainer/A.disabled = true
-	$QuizContainer/AnswerContainer/B.disabled = true
-	$QuizContainer/AnswerContainer2/C.disabled = true
-	$QuizContainer/AnswerContainer2/D.disabled = true
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer/A.disabled = true
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer/B.disabled = true
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/C.disabled = true
+	$QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/D.disabled = true
 
 
 func _process(delta):

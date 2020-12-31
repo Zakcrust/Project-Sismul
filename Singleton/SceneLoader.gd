@@ -44,6 +44,7 @@ func quit_battle_scene(win : bool) -> void:
 	get_tree().current_scene = children[-2]
 	current_battle_scene.queue_free()
 	get_tree().current_scene.spawn_player(player_last_position)
+	get_tree().current_scene.show_ui()
 	if win:
 		BattleData.enemy_character.queue_free()
 		BattleData.enemy_character = null

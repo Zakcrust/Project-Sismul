@@ -21,8 +21,11 @@ func enter() -> void:
 func open_inventory() -> void:
 	var inventory = inventory_scene.instance()
 	inventory.connect("done", self, "use_item")
+	inventory.connect("cancel", self, "cancel")
 	fsm.character.add_child(inventory)
 
+func cancel() -> void:
+	next("Ready")
 
 func use_item() -> void:
 	fsm.sprite.play("cast_skill_in")

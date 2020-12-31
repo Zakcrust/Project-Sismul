@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Tileset/Nature.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/Props.tres" type="TileSet" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://Scripts/Map/Stage1.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Character/MekaMongke.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/Battlers/MekaMongke.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/UI/GameUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Rewards/HealthPotionReward.tscn" type="PackedScene" id=10]
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 6 )
@@ -59,12 +61,17 @@ target_spawn_position = Vector2( 1375, 1080 )
 [node name="MekaMongke2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 2252.88, 466.402 )
 battlers = [ ExtResource( 8 ), ExtResource( 8 ) ]
+reward = ExtResource( 10 )
 
 [node name="MekaMongke" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1181.03, 733.379 )
 battlers = [ ExtResource( 8 ) ]
+reward = ExtResource( 10 )
 
 [node name="MekaMongke3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1369.9, 78.1051 )
 battlers = [ ExtResource( 8 ), ExtResource( 8 ), ExtResource( 8 ) ]
+reward = ExtResource( 10 )
+
+[node name="GameUI" parent="." instance=ExtResource( 9 )]
 [connection signal="tree_exiting" from="." to="." method="_on_Stage1_tree_exiting"]
