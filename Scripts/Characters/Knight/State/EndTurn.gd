@@ -12,7 +12,7 @@ func exit():
 
 func enter() -> void:
 	print("Current state : %s" % self.name)
-	fsm.character.emit_signal("end_turn")
+	fsm.character.end_turn()
 	fsm.sprite.play("idle")
 
 func process(_delta):

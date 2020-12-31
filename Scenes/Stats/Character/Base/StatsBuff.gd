@@ -37,3 +37,15 @@ func get_damage_buff() -> Buff:
 
 func get_speed_buff() -> Buff:
 	return speed_buff
+
+func cycle_turn() -> void:
+	if health_buff != null:
+		health_buff.turn()
+	if energy_buff != null:
+		energy_buff.turn()
+	if armour_buff != null:
+		armour_buff.turn()
+	if damage_buff != null:
+		damage_buff.turn()
+	if speed_buff != null:
+		speed_buff.turn()

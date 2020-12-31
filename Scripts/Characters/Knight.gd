@@ -7,19 +7,44 @@ signal dead(object)
 
 var enemies : Array
 var stats : Stats
-var battle_stats : Stats
+var battle_stats : Stats = Stats.new(0,0,0,0,0)
+var battle_buff : StatsBuff = StatsBuff.new()
 
 onready var target : Position2D = $Target setget , get_target
 
 func get_target() -> Position2D:
 	return target
 
+func load_stats() -> void:
+	battle_stats.health = stats.health
+	battle_stats.armor = stats.armor
+	battle_stats.damage = stats.damage
+	battle_stats.speed = stats.speed
+	battle_stats.energy =  stats.energy
+
 func _ready():
 	stats = PlayerData.stats
-	battle_stats = stats
+	load_stats()
 	$AttackCast.collide_with_areas = true
 	$Sprite.play("idle")
 	update_health_bar_ui()
+
+func check_buff() -> void:
+	var current_health = battle_stats.health
+	load_stats()
+	battle_stats.health = current_health
+	$BuffUI.hide_all_buff()
+	if battle_buff.damage_buff != null:
+		battle_stats.damage = battle_stats.damage + battle_buff.damage_buff.amount
+		$BuffUI.show_buff(battle_buff.damage_buff.buff_type)
+	if battle_buff.speed_buff != null:
+		battle_stats.speed = battle_stats.speed + battle_buff.speed_buff.amount
+		$BuffUI.show_buff(battle_buff.speed_buff.buff_type)
+	if battle_buff.armour_buff != null:
+		print("Armor buff : %s" % battle_buff.armour_buff.amount)
+		battle_stats.armor = battle_stats.armor + battle_buff.armour_buff.amount
+		print("Armor has been increased to : %s" % battle_stats.armor)
+		$BuffUI.show_buff(battle_buff.armour_buff.buff_type)
 
 func update_health_bar_ui() -> void:
 	$CharacterUI.set_health_bar_max_value(battle_stats.health)
@@ -35,7 +60,26 @@ func victory() -> void:
 	$Sprite.play("idle")
 
 func play_turn():
+	stats_report()
 	$State.initialize()
+
+func end_turn() -> void:
+	check_buff()
+	battle_buff.cycle_turn()
+	stats_report()
+	emit_signal("end_turn")
+
+func stats_report() -> void:
+	print("==============")
+	print("PLAYER STATS")
+	print("Health : %s" % battle_stats.health)
+	print("Armor : %s" % battle_stats.armor)
+	print("Damage : %s" % battle_stats.damage)
+	print("Speed : %s" % battle_stats.speed)
+	print("Energy : %s" % battle_stats.energy)
+	print("==============")
+
+
 
 func hurt(damage : int) -> void:
 	print("damage dealt : %s" % (damage - battle_stats.armor))
@@ -45,6 +89,7 @@ func hurt(damage : int) -> void:
 	yield($Sprite, "animation_finished")
 	$Sprite.play("idle")
 	check_health()
+	stats_report()
 
 func get_current_state() -> String:
 	return $State.state.name
