@@ -3,7 +3,9 @@ extends CanvasLayer
 var inventory_ui : PackedScene = load("res://Scenes/UI/InventoryUI.tscn")
 
 func _on_Inventory_pressed():
-	add_child(inventory_ui.instance())
+	var instance = inventory_ui.instance()
+	instance.view_only()
+	add_child(instance)
 
 
 func _on_Sound_toggled(button_pressed):

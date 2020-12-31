@@ -11,6 +11,8 @@ func _ready():
 	add_item(PlayerData.inventory.items)
 	get_tree().paused = true
 
+func view_only() -> void:
+	$InventoryUI/Button/HBoxContainer/Use.hide()
 
 func add_item(items : Array) -> void:
 	for item in items:
