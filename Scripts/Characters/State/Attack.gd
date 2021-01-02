@@ -3,9 +3,7 @@ extends Node
 var fsm: EnemyStateMachine
 var players : Array
 
-export (NodePath) var attack_cast_path
-
-onready var attack_cast : RayCast2D = get_node(attack_cast_path)
+onready var attack_cast : RayCast2D = get_parent().get_parent().get_node("AttackCast")
 
 var player : Player
 

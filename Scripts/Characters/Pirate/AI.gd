@@ -1,9 +1,6 @@
 extends Node
 
-
-export (NodePath) var fsm_path
-
-onready var fsm : EnemyStateMachine = get_node(fsm_path)
+onready var fsm : EnemyStateMachine = get_parent().get_node("State")
 
 func play_turn() -> void:
 	fsm.change_to("Attack")

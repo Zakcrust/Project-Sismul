@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Tileset/Nature.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/Props.tres" type="TileSet" id=2]
 [ext_resource path="res://Scripts/Map/Stage2.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Map/Gateway.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/UI/GameUI.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Character/Stage2Boss.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Rewards/Stage2KeyReward.tscn" type="PackedScene" id=7]
 
 [node name="Stage2" type="Node2D"]
 script = ExtResource( 3 )
@@ -42,14 +45,22 @@ __meta__ = {
 }
 
 [node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 1375, 1080 )
+position = Vector2( 1364.92, 863.294 )
 
 [node name="Gateway" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1379.91, 1071.3 )
+position = Vector2( 1376.8, 955.41 )
 target_spawn_position = Vector2( 1380, 0 )
 stage = "STAGE_1"
 
 [node name="Gateway2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2400, 475 )
+position = Vector2( 2394.34, 479.912 )
+scale = Vector2( 1, 1.88103 )
 target_spawn_position = Vector2( 0, 480 )
 stage = "STAGE_3"
+
+[node name="GameUI" parent="." instance=ExtResource( 5 )]
+
+[node name="Stage2Boss" parent="." instance=ExtResource( 6 )]
+position = Vector2( 2337.15, 478.858 )
+scale = Vector2( -0.4, 0.4 )
+reward = ExtResource( 7 )

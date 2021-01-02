@@ -2,7 +2,6 @@ extends Control
 
 signal send_answer(answer)
 
-
 func set_answer_text(text : String) -> void:
 	$Answer.text = text
 

@@ -20,6 +20,8 @@ func enter() -> void:
 
 func open_inventory() -> void:
 	var inventory = inventory_scene.instance()
+	inventory.add_consumables(PlayerData.inventory.items)
+	inventory
 	inventory.connect("done", self, "use_item")
 	inventory.connect("cancel", self, "cancel")
 	fsm.character.add_child(inventory)

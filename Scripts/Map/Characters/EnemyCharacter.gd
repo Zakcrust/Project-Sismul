@@ -5,7 +5,6 @@ class_name EnemyCharacter
 export (Array, PackedScene) var battlers
 export (PackedScene) var reward
 
-
 var battler_instances : Array
 
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
@@ -13,12 +12,15 @@ var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 
 func _ready():
 	for battler in battlers:
-		battler_instances.append(battler.instance())
+		var instance = battler.instance()
+		battler_instances.append(instance)
 
 func fight(player : PackedScene) -> void:
 	battler_instances.clear()
 	for battler in battlers:
-		battler_instances.append(battler.instance())
+		var instance = battler.instance()
+		battler_instances.append(instance)
+	print(battler_instances)
 	to_battle(player)
 
 

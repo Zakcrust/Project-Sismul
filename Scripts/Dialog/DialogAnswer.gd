@@ -2,15 +2,15 @@ extends Node
 
 class_name DialogAnswer
 
-var dialog_answer : String
-var answer_script_path : String
+var dialog_answer : String setget , get_dialog_answer
+var next_dialog : Array setget , get_next_dialog
 
-func _init(answer_init : String, answer_script : String):
+func _init(answer_init : String, dialog : Array):
 	dialog_answer = answer_init
-	answer_script_path = answer_script
+	next_dialog = dialog
 
 func get_dialog_answer() -> String:
 	return dialog_answer
 
-func get_answer_script_path() -> String:
-	return answer_script_path
+func get_next_dialog() -> Array:
+	return next_dialog

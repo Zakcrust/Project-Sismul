@@ -8,7 +8,7 @@ signal done()
 signal cancel()
 
 func _ready():
-	add_item(PlayerData.inventory.items)
+#	add_item(PlayerData.inventory.items)
 	get_tree().paused = true
 
 func view_only() -> void:
@@ -16,6 +16,20 @@ func view_only() -> void:
 
 func add_item(items : Array) -> void:
 	for item in items:
+		$InventoryUI/Inventory/ItemList.add_item(item.item_name,load(item.item_asset_path))
+		loaded_items.append(item)
+
+func add_consumables(items : Array) -> void:
+	for item in items:
+		if item.item_effect.effect_type == ItemEffectTypes.KEY:
+			continue
+		$InventoryUI/Inventory/ItemList.add_item(item.item_name,load(item.item_asset_path))
+		loaded_items.append(item)
+
+func add_non_consumables(items : Array) -> void:
+	for item in items:
+		if item.item_effect.effect_type != ItemEffectTypes.KEY:
+			continue
 		$InventoryUI/Inventory/ItemList.add_item(item.item_name,load(item.item_asset_path))
 		loaded_items.append(item)
 

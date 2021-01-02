@@ -144,6 +144,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Singleton/Scenes.gd"
 }, {
+"base": "Node2D",
+"class": "Stage1Boss",
+"language": "GDScript",
+"path": "res://Scripts/Characters/Bosses/Stage1Boss.gd"
+}, {
+"base": "Node2D",
+"class": "Stage2Boss",
+"language": "GDScript",
+"path": "res://Scripts/Characters/Bosses/Stage2Boss.gd"
+}, {
+"base": "Node2D",
+"class": "Stage3Boss",
+"language": "GDScript",
+"path": "res://Scripts/Characters/Bosses/Stage3Boss.gd"
+}, {
 "base": "Node",
 "class": "StatReward",
 "language": "GDScript",
@@ -202,6 +217,9 @@ _global_script_class_icons={
 "Scene": "",
 "SceneGateway": "",
 "SceneList": "",
+"Stage1Boss": "",
+"Stage2Boss": "",
+"Stage3Boss": "",
 "StatReward": "",
 "StatType": "",
 "StateMachine": "",
@@ -225,6 +243,7 @@ QuizLoader="*res://Singleton/QuizLoader.gd"
 BattleData="*res://Singleton/BattleData.gd"
 PlayerData="*res://Singleton/PlayerData.gd"
 ItemManager="*res://Scripts/Item/Base/ItemManager.gd"
+SoundAndMusic="*res://Singleton/SoundAndMusic.tscn"
 
 [display]
 

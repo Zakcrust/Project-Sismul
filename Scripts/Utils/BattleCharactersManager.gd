@@ -55,7 +55,9 @@ func play_turn():
 	var new_index = (active_character.get_index() + 1) % get_child_count()
 	active_character = get_child(new_index)
 	while(active_character.get_current_state() == "Dead"):
+		print("Object is already dead.. finding another object..")
 		new_index = (active_character.get_index() + 1) % get_child_count()
+		active_character = get_child(new_index)
 		pass
 	print("Current turn : %s" % active_character.name)
 	active_character.play_turn()

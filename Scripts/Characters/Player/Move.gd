@@ -6,7 +6,6 @@ var velocity : Vector2
 var speed : float = 200
 
 func next(next_state):
-	get_tree()
 	fsm.change_to(next_state)
 
 func exit():
@@ -29,6 +28,7 @@ func process(_delta):
 	if Input.is_action_pressed("move_right"):
 		velocity += Vector2.RIGHT
 	velocity = velocity.normalized()
+	face_to(velocity)
 	fsm.character.move_and_slide(velocity * speed)
 	if velocity == Vector2():
 		fsm.sprite.play("idle")
@@ -49,6 +49,8 @@ func _interact() -> void:
 				fsm.character.object_to_interact.interact(fsm.character)
 			elif(fsm.character.object_to_interact.has_method("travel")):
 				fsm.character.object_to_interact.travel()
+			elif(fsm.character.object_to_interact.has_method("start_dialog")):
+				fsm.character.object_to_interact.start_dialog()
 			elif(fsm.character.object_to_interact.has_method("fight")):
 				fsm.character.object_to_interact.fight(fsm.character.player_battler)
 				SceneLoader.player_last_position = fsm.character.global_position
@@ -56,6 +58,14 @@ func _interact() -> void:
 				return
 			next("Interact")
 		print("No object to interact!")
+
+func face_to(direction : Vector2) -> void:
+	if direction.x < 0:
+		fsm.sprite.scale.x = -1
+	else:
+		fsm.sprite.scale.x = 1
+
+
 
 func physics_process(_delta):
 	pass

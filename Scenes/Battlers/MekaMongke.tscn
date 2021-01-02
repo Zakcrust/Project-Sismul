@@ -158,15 +158,12 @@ collide_with_areas = true
 
 [node name="State" type="Node" parent="."]
 script = ExtResource( 24 )
-character_path = NodePath("../../MekaMongke")
-sprite_path = NodePath("../Anim")
 
 [node name="Ready" type="Node" parent="State"]
 script = ExtResource( 25 )
 
 [node name="Attack" type="Node" parent="State"]
 script = ExtResource( 26 )
-attack_cast_path = NodePath("../../../MekaMongke/AttackCast")
 
 [node name="Tween" type="Tween" parent="State/Attack"]
 
@@ -178,7 +175,6 @@ script = ExtResource( 28 )
 
 [node name="AI" type="Node" parent="."]
 script = ExtResource( 27 )
-fsm_path = NodePath("../../MekaMongke/State")
 
 [node name="Anim" type="AnimationPlayer" parent="."]
 anims/attack = SubResource( 2 )

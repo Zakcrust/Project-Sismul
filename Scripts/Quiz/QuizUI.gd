@@ -44,11 +44,12 @@ func load_question() -> void:
 func check_answer(ans : String) -> void:
 	disable_buttons()
 	set_process(false)
-	yield(get_tree().create_timer(1.0), "timeout")
 	if ans == answer:
+		SoundAndMusic.play_sfx(SoundAndMusic.CORRECT_SFX)
 		print("Correct")
 		emit_signal("correct", reward)
 	else:
+		SoundAndMusic.play_sfx(SoundAndMusic.WRONG_SFX)
 		print("Wrong")
 		emit_signal("wrong")
 	character.activate()

@@ -6,12 +6,8 @@ const DEBUG = true
 
 var state: Node
 
-export (NodePath) var character_path
-export (NodePath) var sprite_path
-
-
-onready var character : Area2D = get_node(character_path)
-onready var sprite : Node = get_node(sprite_path)
+onready var character : Area2D = get_parent()
+onready var sprite : Node = get_parent().get_node("Anim")
 
 
 var history = []

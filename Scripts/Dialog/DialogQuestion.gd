@@ -2,16 +2,16 @@ extends Node
 
 class_name DialogQuestion
 
-var question_text : String
-var question_answer : Array
+var answer : String setget , get_answer
+var question_answer : Array setget , get_question_answer
 
-func _init(question_init : String, answers : Array):
-	question_text = question_init
+func _init(answer_init : String ,answers : Array):
+	answer = answer_init
 	question_answer = answers
 
 
-func get_question_text() -> String:
-	return question_text
+func get_answer() -> String:
+	return answer
 
-func question_answer() -> Array:
+func get_question_answer() -> Array:
 	return question_answer
