@@ -79,4 +79,5 @@ position = Vector2( 1170, 224 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 5 )
 [connection signal="pressed" from="Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]

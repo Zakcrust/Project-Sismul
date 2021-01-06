@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Tileset/Nature.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/Props.tres" type="TileSet" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scenes/Rewards/HealthPotionReward.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Character/Stage1Boss.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Rewards/Stage1KeyReward.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Test/TransitionScene.tscn" type="PackedScene" id=13]
 
 [node name="Stage1" type="Node2D"]
 script = ExtResource( 6 )
@@ -67,7 +68,7 @@ reward = ExtResource( 12 )
 [node name="GameUI" parent="." instance=ExtResource( 9 )]
 
 [node name="MekaMongke" parent="." instance=ExtResource( 7 )]
-position = Vector2( 704.906, 202.043 )
+position = Vector2( 507.657, 216.528 )
 battlers = [ ExtResource( 8 ), ExtResource( 8 ) ]
 reward = ExtResource( 10 )
 
@@ -75,4 +76,5 @@ reward = ExtResource( 10 )
 position = Vector2( 1136, 696 )
 battlers = [ ExtResource( 8 ) ]
 reward = ExtResource( 10 )
-[connection signal="tree_exiting" from="." to="." method="_on_Stage1_tree_exiting"]
+
+[node name="TransitionScene" parent="." instance=ExtResource( 13 )]

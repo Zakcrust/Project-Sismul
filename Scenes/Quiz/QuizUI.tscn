@@ -271,6 +271,8 @@ anims/anim = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 [connection signal="pressed" from="QuizContainer/ColorRect/HBoxContainer/AnswerContainer/A" to="." method="_on_A_pressed"]
 [connection signal="pressed" from="QuizContainer/ColorRect/HBoxContainer/AnswerContainer/B" to="." method="_on_B_pressed"]
 [connection signal="pressed" from="QuizContainer/ColorRect/HBoxContainer/AnswerContainer2/C" to="." method="_on_C_pressed"]

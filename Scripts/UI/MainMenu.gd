@@ -8,3 +8,7 @@ func _on_Play_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_Options_pressed():
+	add_child(load("res://Scenes/UI/OptionsUI.tscn").instance())

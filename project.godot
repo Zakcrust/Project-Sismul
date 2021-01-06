@@ -237,12 +237,12 @@ config/icon="res://Assets/UI/gamelogo.png"
 
 [autoload]
 
-SceneLoader="*res://Singleton/SceneLoader.gd"
 QuestionPool="*res://Scripts/Utils/QuestionPool.gd"
 QuizLoader="*res://Singleton/QuizLoader.gd"
 BattleData="*res://Singleton/BattleData.gd"
 PlayerData="*res://Singleton/PlayerData.gd"
 ItemManager="*res://Scripts/Item/Base/ItemManager.gd"
+SceneLoader="*res://Singleton/SceneLoader.gd"
 SoundAndMusic="*res://Singleton/SoundAndMusic.tscn"
 
 [display]

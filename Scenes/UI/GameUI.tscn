@@ -1,21 +1,57 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/GameUI.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
-size = 96
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 96
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.756863, 1, 0, 1 )
 
-[sub_resource type="DynamicFont" id=3]
-size = 96
-font_data = ExtResource( 1 )
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.470588, 0, 1 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.756863, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 0.470588, 0, 1 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.756863, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 1, 0.470588, 0, 1 )
+
+[sub_resource type="DynamicFont" id=12]
+size = 96
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.756863, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=15]
+bg_color = Color( 1, 0.470588, 0, 1 )
+
+[sub_resource type="DynamicFont" id=16]
 size = 96
 font_data = ExtResource( 1 )
 
@@ -37,7 +73,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="GameUI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.254902, 0.223529, 0.223529, 1 )
+color = Color( 0.945098, 0.819608, 0.541176, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -53,33 +89,81 @@ __meta__ = {
 }
 
 [node name="Inventory" type="Button" parent="GameUI/HBoxContainer"]
-margin_right = 198.0
+margin_right = 186.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Inventory"
 
-[node name="Sound" type="Button" parent="GameUI/HBoxContainer"]
-margin_left = 248.0
-margin_right = 456.0
+[node name="Options" type="Button" parent="GameUI/HBoxContainer"]
+margin_left = 236.0
+margin_right = 381.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+text = "Options"
+
+[node name="Sound" type="Button" parent="GameUI/HBoxContainer"]
+visible = false
+margin_left = 472.0
+margin_right = 668.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 toggle_mode = true
 text = "Sound : ON"
 
 [node name="Music" type="Button" parent="GameUI/HBoxContainer"]
-margin_left = 506.0
-margin_right = 701.0
+visible = false
+margin_left = 472.0
+margin_right = 655.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 3 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 toggle_mode = true
 text = "Music : ON"
 
 [node name="Help" type="Button" parent="GameUI/HBoxContainer"]
-margin_left = 751.0
-margin_right = 835.0
+margin_left = 431.0
+margin_right = 503.0
 margin_bottom = 96.0
-custom_fonts/font = SubResource( 4 )
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
+text = "Help"
+
+[node name="SaveAndQuit" type="Button" parent="GameUI/HBoxContainer"]
+margin_left = 553.0
+margin_right = 625.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
+text = "Help"
+
+[node name="QuitWithoutSaving" type="Button" parent="GameUI/HBoxContainer"]
+margin_left = 675.0
+margin_right = 747.0
+margin_bottom = 96.0
+custom_styles/hover = SubResource( 13 )
+custom_styles/pressed = SubResource( 14 )
+custom_styles/normal = SubResource( 15 )
+custom_fonts/font = SubResource( 16 )
 text = "Help"
 [connection signal="pressed" from="GameUI/HBoxContainer/Inventory" to="." method="_on_Inventory_pressed"]
+[connection signal="pressed" from="GameUI/HBoxContainer/Options" to="." method="_on_Options_pressed"]
 [connection signal="toggled" from="GameUI/HBoxContainer/Sound" to="." method="_on_Sound_toggled"]
 [connection signal="toggled" from="GameUI/HBoxContainer/Music" to="." method="_on_Music_toggled"]
+[connection signal="pressed" from="GameUI/HBoxContainer/Help" to="." method="_on_Help_pressed"]
+[connection signal="pressed" from="GameUI/HBoxContainer/SaveAndQuit" to="." method="_on_SaveAndQuit_pressed"]
+[connection signal="pressed" from="GameUI/HBoxContainer/QuitWithoutSaving" to="." method="_on_QuitWithoutSaving_pressed"]

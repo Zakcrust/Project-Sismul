@@ -4,7 +4,7 @@ class_name Stage3Boss
 
 export (PackedScene) var reward
 
-var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage1/Stage1Dialogues.gd")
+var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage3/Stage3Dialogues.gd")
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 var player_ref : Character
 
@@ -36,6 +36,5 @@ func dialog_success() -> void:
 	player_ref.redeem_reward(reward_instance)
 	player_ref.activate()
 	queue_free()
-
 func dialog_failed() -> void:
 	player_ref.activate()

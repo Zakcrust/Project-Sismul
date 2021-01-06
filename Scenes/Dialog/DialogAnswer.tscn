@@ -1,9 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Dialog/DialogAnswerUI.gd" type="Script" id=2]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.756863, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.470588, 0, 1 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 96
 font_data = ExtResource( 1 )
 
@@ -20,7 +29,10 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 300, 94 )
-custom_fonts/font = SubResource( 1 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "Test"
 __meta__ = {
 "_edit_lock_": true,

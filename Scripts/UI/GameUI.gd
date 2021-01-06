@@ -21,3 +21,19 @@ func _on_Music_toggled(button_pressed):
 		$GameUI/HBoxContainer/Music.text = "Music : OFF"
 	else:
 		$GameUI/HBoxContainer/Music.text = "Music : ON"
+
+
+func _on_Options_pressed():
+	add_child(load("res://Scenes/UI/OptionsUI.tscn").instance())
+
+
+func _on_Help_pressed():
+	add_child(load("res://Scenes/UI/HelpUI.tscn").instance())
+
+
+func _on_SaveAndQuit_pressed():
+	pass # Replace with function body.
+
+
+func _on_QuitWithoutSaving_pressed():
+	pass # Replace with function body.

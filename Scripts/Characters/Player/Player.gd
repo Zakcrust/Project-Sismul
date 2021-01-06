@@ -7,6 +7,7 @@ var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 
 var boundary : Vector2 = Vector2(2340, 952)
 
+signal flicker_done()
 
 func _ready():
 	$Camera2D.current = true
@@ -36,6 +37,12 @@ func redeem_reward(reward) -> void:
 	yield(reward_ui_instance,"tree_exited")
 	get_parent().show_ui()
 	
+func flicker_transition() -> void:
+	var parent = get_parent()
+	parent.transition_flicker()
+	yield(parent, "flicker_done")
+	emit_signal("flicker_done")
+
 
 func enable_camera() -> void:
 	$Camera2D.current = true

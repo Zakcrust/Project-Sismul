@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/swampbg.png" type="Texture" id=1]
+[ext_resource path="res://Test/TransitionScene.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/BattleScenes/BattleScene1.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Utils/BattleCharactersManager.gd" type="Script" id=5]
+[ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Scripts/BattleScenes/BattleScene1Canvas.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 256
+font_data = ExtResource( 6 )
+
+[node name="BattleScene1" type="Node2D"]
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="TurnQueue" type="YSort" parent="."]
+script = ExtResource( 5 )
+
+[node name="DeadPool" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="PlayerSpawnPoint" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Position2D" type="Position2D" parent="PlayerSpawnPoint"]
+position = Vector2( 411.369, 651.024 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 7 )
+
+[node name="PostBattle" type="Label" parent="CanvasLayer"]
+visible = false
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -116.0
+margin_bottom = 116.0
+custom_fonts/font = SubResource( 1 )
+text = "Victory"
+align = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="EnemySpawnPoints" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Position2D" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 1742.19, 330.817 )
+
+[node name="Position2D2" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 1966.27, 531.758 )
+
+[node name="Position2D3" type="Position2D" parent="EnemySpawnPoints"]
+position = Vector2( 2217.35, 717.351 )
+
+[node name="TransitionScene" parent="." instance=ExtResource( 2 )]
+[connection signal="set_post_battle_ui" from="TurnQueue" to="CanvasLayer" method="_on_TurnQueue_set_post_battle_ui"]

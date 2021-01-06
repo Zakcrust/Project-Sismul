@@ -1,55 +1,55 @@
 extends Node
 
 var question_1_true_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Correct, lets move on to the next question",
 	DialogType.STATEMENT),
 ]
 
 var question_1_false_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Wrong answer, it seems you are not worthy enough. comeback next time.",
 	DialogType.STATEMENT_END),
 ]
 
 var question_2_true_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Correct, lets move on to the next question",
 	DialogType.STATEMENT),
 ]
 
 var question_2_false_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Wrong answer, it seems you are not worthy enough. comeback next time.",
 	DialogType.STATEMENT_END),
 ]
 
 var question_3_true_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Good job. You have answered those questions correcly. now you may continue your journey traveller.",
 	DialogType.STATEMENT),
 ]
 
 var question_3_false_answer : Array = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Wrong answer, it seems you are not worthy enough. comeback next time.",
 	DialogType.STATEMENT),
 ]
 
 var statements_init = [
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Welcome to traveler. to pass this gate you have to answer these questions correctly",
 	DialogType.STATEMENT),
 	
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Ibu mempunyai 2 1/2 karung tepung. Jika setiap karung berisi 2/5 kuintal tepung, maka berpa kuintal tepung ibu seluruhnya?",
 	DialogType.QUESTION,
 	DialogQuestion.new(
@@ -61,8 +61,8 @@ var statements_init = [
 		DialogAnswer.new("5/2 kuintal", question_1_false_answer)
 	])),
 	
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Ibu mempunyai persediaan gula dalam 5 bungkus plastik. Jika setiap bungkus berisi 2 1/2 kg gula, berapa berat seluruh gula persediaan Ibu?",
 	DialogType.QUESTION,
 	DialogQuestion.new(
@@ -74,8 +74,8 @@ var statements_init = [
 		DialogAnswer.new("8 kg", question_2_false_answer)
 	])),
 	
-	Dialog.new("Totem",
-	 "res://Assets/Sprites/chars/CloseUp/Player/player_normal.tres",
+	Dialog.new("Golem",
+	 "res://Assets/Sprites/chars/CloseUp/Golem/monster3.png",
 	"Beni mandi menghabiskan air sebanyak 16 gayung. Setiap gayung berisi 3/5 liter. Berapa liter air yang dipakai Beni saat mandi?",
 	DialogType.QUESTION,
 	DialogQuestion.new(

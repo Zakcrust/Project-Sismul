@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/UI/Quiz/framemath.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Piratekeg.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scripts/UI/Help.gd" type="Script" id=3]
+[ext_resource path="res://Assets/UI/Quiz/answerbox.png" type="Texture" id=7]
+[ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 84
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 84
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 108
+font_data = ExtResource( 8 )
+
+[node name="HelpCanvas" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
+
+[node name="Help" type="Control" parent="."]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Help"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1110.0
+margin_top = -519.0
+margin_right = 1110.0
+margin_bottom = 519.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Help"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -230.0
+margin_top = 43.0
+margin_right = 230.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 1 )
+text = "Help"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Help"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 400.0
+margin_top = -240.0
+margin_right = 817.0
+margin_bottom = -138.0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Movement" type="HBoxContainer" parent="Help/VBoxContainer"]
+margin_right = 1850.0
+margin_bottom = 98.0
+custom_constants/separation = 300
+
+[node name="Label" type="Label" parent="Help/VBoxContainer/Movement"]
+margin_right = 625.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 625, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Movement"
+valign = 1
+
+[node name="Label2" type="Label" parent="Help/VBoxContainer/Movement"]
+margin_left = 925.0
+margin_right = 1550.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 625, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "W, S, A, D"
+valign = 1
+
+[node name="Interact" type="HBoxContainer" parent="Help/VBoxContainer"]
+margin_top = 198.0
+margin_right = 1850.0
+margin_bottom = 296.0
+custom_constants/separation = 300
+
+[node name="Label" type="Label" parent="Help/VBoxContainer/Interact"]
+margin_right = 625.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 625, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Interact"
+valign = 1
+
+[node name="Label2" type="Label" parent="Help/VBoxContainer/Interact"]
+margin_left = 925.0
+margin_right = 1550.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 625, 0 )
+custom_fonts/font = SubResource( 2 )
+text = "Space"
+valign = 1
+
+[node name="Close" type="TextureButton" parent="Help"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.0
+margin_top = -222.0
+margin_right = 229.0
+margin_bottom = -99.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Help/Close"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 5 )
+text = "Close"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Help/Close" to="Help" method="_on_Close_pressed"]

@@ -4,31 +4,62 @@ extends Node
 var running_scene : PackedScene
 var current_scene : Scene
 
+var battle_scene : PackedScene
 
 var player_last_position : Vector2
 var player : PackedScene = load("res://Scenes/Character/Player.tscn")
 
 var scenes : SceneList = SceneList.new()
+
+var available_stages : Array
+
 var directory = Directory.new()
+
+var STAGE_1 = load(scenes.get_scene(scenes.STAGE_1).default_scene_path).instance()
+var STAGE_2 = load(scenes.get_scene(scenes.STAGE_2).default_scene_path).instance()
+var STAGE_3 = load(scenes.get_scene(scenes.STAGE_3).default_scene_path).instance()
+
+func _ready():
+	available_stages.append(STAGE_1)
+	available_stages.append(STAGE_2)
+	available_stages.append(STAGE_3)
+
 
 func load_scene(scene : Scene, spawn_pos : Vector2):
 	current_scene = scene
-	if directory.file_exists(scene.saved_scene_path):
-		var prev_scene = get_tree().current_scene
-		running_scene = load(scene.saved_scene_path)
-		var scene_instance = running_scene.instance()
-		scene_instance.spawn_player(spawn_pos)
-		get_tree().get_root().add_child(scene_instance)
-		get_tree().current_scene = scene_instance
-		get_tree().get_root().remove_child(prev_scene)
-	else:
-		var prev_scene = get_tree().current_scene
-		running_scene = load(scene.default_scene_path)
-		var scene_instance = running_scene.instance()
-		scene_instance.spawn_player(spawn_pos)
-		get_tree().get_root().add_child(scene_instance)
-		get_tree().current_scene = scene_instance
-		get_tree().get_root().remove_child(prev_scene)
+	match(scene.scene_name):
+		scenes.STAGE_1:
+			for child in get_tree().get_root().get_children():
+				if child == STAGE_1:
+					get_tree().current_scene = STAGE_1
+					return
+			get_tree().get_root().add_child(STAGE_1)
+		scenes.STAGE_2:
+			for child in get_tree().get_root().get_children():
+				if child == STAGE_2:
+					get_tree().current_scene = STAGE_2
+			get_tree().get_root().add_child(STAGE_2)
+		scenes.STAGE_3:
+			for child in get_tree().get_root().get_children():
+				if child == STAGE_3:
+					get_tree().current_scene = STAGE_3
+					return
+			get_tree().get_root().add_child(STAGE_3)
+#		var prev_scene = get_tree().current_scene
+#		running_scene = load(scene.saved_scene_path)
+#		var scene_instance = running_scene.instance()
+#		scene_instance.spawn_player(spawn_pos)
+#		get_tree().get_root().add_child(scene_instance)
+#		get_tree().current_scene = scene_instance
+#		get_tree().get_root().remove_child(prev_scene)
+#	else:
+#		var prev_scene = get_tree().current_scene
+#		running_scene = load(scene.default_scene_path)
+#		var scene_instance = running_scene.instance()
+#		scene_instance.spawn_player(spawn_pos)
+#		get_tree().get_root().add_child(scene_instance)
+#		get_tree().current_scene = scene_instance
+#		get_tree().get_root().remove_child(prev_scene)
 
 
 func load_battle_scene(battlers : Array) -> void:
@@ -39,6 +70,7 @@ func load_battle_scene(battlers : Array) -> void:
 
 
 func quit_battle_scene(win : bool) -> void:
+	SoundAndMusic.play_music(SoundAndMusic.PEKORA_BGM)
 	var children = get_tree().get_root().get_children()
 	var current_battle_scene = children.back()
 	get_tree().current_scene = children[-2]
@@ -48,3 +80,13 @@ func quit_battle_scene(win : bool) -> void:
 	if win:
 		BattleData.enemy_character.queue_free()
 		BattleData.enemy_character = null
+
+
+func save_scenes() -> void:
+	var counter = 0
+	for stage in available_stages:
+		counter += 1
+		stage.register_children()
+		var packed_scene : PackedScene = PackedScene.new()
+		packed_scene.pack(stage)
+		ResourceSaver.save("res://Scenes/Map/SavedScene/Stage%s.tscn" % counter, packed_scene)

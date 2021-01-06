@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Characters/Bosses/Stage3Boss.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_01/PNGSequences/Idle/Golem_01_Idle_000.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_01/PNGSequences/Idle/Golem_01_Idle_011.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_01/PNGSequences/Idle/Golem_01_Idle_010.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_01/PNGSequences/Idle/Golem_01_Idle_004.png" type="Texture" id=14]
+[ext_resource path="res://Scenes/Rewards/Stage3KeyReward.tscn" type="PackedScene" id=15]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -52,10 +53,12 @@ tracks/0/keys = {
 [node name="Stage3Boss" type="StaticBody2D"]
 scale = Vector2( 0.4, 0.4 )
 script = ExtResource( 1 )
+reward = ExtResource( 15 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
+frame = 11
 playing = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]

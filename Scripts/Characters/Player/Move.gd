@@ -52,6 +52,8 @@ func _interact() -> void:
 			elif(fsm.character.object_to_interact.has_method("start_dialog")):
 				fsm.character.object_to_interact.start_dialog()
 			elif(fsm.character.object_to_interact.has_method("fight")):
+				fsm.character.flicker_transition()
+				yield(fsm.character, "flicker_done")
 				fsm.character.object_to_interact.fight(fsm.character.player_battler)
 				SceneLoader.player_last_position = fsm.character.global_position
 				fsm.character.queue_free()

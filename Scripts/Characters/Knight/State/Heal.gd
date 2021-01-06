@@ -41,6 +41,7 @@ func use_item() -> void:
 	fsm.character.update_health_bar_ui()
 	$HealParticles.emitting = true
 	yield(get_tree().create_timer(1.5), "timeout")
+	$HealParticles.emitting = false
 	next("EndTurn")
 	
 

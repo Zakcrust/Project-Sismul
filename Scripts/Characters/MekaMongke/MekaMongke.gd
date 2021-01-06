@@ -2,14 +2,35 @@ extends Area2D
 
 signal end_turn
 
-var stats : Stats = Stats.new(10,10,6,0,2) 
-var battle_stats : Stats = stats
-
+var stats : Stats
+var battle_stats : Stats
+var battle_buff : StatsBuff = StatsBuff.new()
 onready var target = $Target setget , get_target
 
+func _init():
+	stats = Stats.new(10,10,6,0,2) 
+	battle_stats = stats
 func _ready():
-	$Sprite/CharacterUI.set_health_bar_max_value(stats.health)
+	$Sprite/CharacterUI.set_health_bar_max_value(battle_stats.health)
 	$Anim.play("idle")
+
+func check_buff() -> void:
+	var current_health = battle_stats.health
+	battle_stats = stats
+	battle_stats.health = current_health
+	$BuffUI.hide_all_buff()
+	if battle_buff.damage_buff != null:
+		battle_stats.damage = battle_stats.damage + battle_buff.damage_buff.amount
+		$BuffUI.show_buff(battle_buff.damage_buff.buff_type)
+	if battle_buff.speed_buff != null:
+		battle_stats.speed = battle_stats.speed + battle_buff.speed_buff.amount
+		$BuffUI.show_buff(battle_buff.speed_buff.buff_type)
+	if battle_buff.armour_buff != null:
+		print("Armor buff : %s" % battle_buff.armour_buff.amount)
+		battle_stats.armor = battle_stats.armor + battle_buff.armour_buff.amount
+		print("Armor has been increased to : %s" % battle_stats.armor)
+		$BuffUI.show_buff(battle_buff.armour_buff.buff_type)
+
 
 func get_target() -> Position2D:
 	return target
@@ -21,6 +42,12 @@ func play_turn():
 	$State.initialize()
 	yield(get_tree().create_timer(1.0), "timeout")
 	$AI.play_turn()
+
+func end_turn() -> void:
+	check_buff()
+	battle_buff.cycle_turn()
+	emit_signal("end_turn")
+
 
 func hurt(damage : int) -> void:
 	battle_stats.health -= (damage - battle_stats.armor)

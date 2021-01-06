@@ -1,6 +1,6 @@
 extends Node
 
-var stats : Stats = Stats.new(100, 30, 3, 2, 5)
+var stats : Stats = Stats.new(10, 10, 3, 2, 5)
 var inventory : Inventory = Inventory.new()
 var inventory_data : InventoryData = load("res://Scripts/Utils/InventoryData/Default/InventoryData.tscn").instance()
 

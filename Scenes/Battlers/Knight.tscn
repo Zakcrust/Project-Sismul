@@ -71,12 +71,17 @@ animations = [ {
 "frames": [ ExtResource( 26 ), ExtResource( 23 ), ExtResource( 25 ), ExtResource( 22 ), ExtResource( 27 ), ExtResource( 28 ), ExtResource( 24 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 31 ) ],
 "loop": true,
 "name": "idle",
-"speed": 10.0
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "move",
+"speed": 15.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "attack",
-"speed": 15.0
+"speed": 21.0
 }, {
 "frames": [ ExtResource( 33 ), ExtResource( 32 ), ExtResource( 38 ), ExtResource( 41 ), ExtResource( 35 ), ExtResource( 40 ), ExtResource( 34 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 39 ) ],
 "loop": false,
@@ -88,19 +93,14 @@ animations = [ {
 "name": "dead",
 "speed": 20.0
 }, {
-"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
-"loop": true,
-"name": "move",
-"speed": 15.0
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "cast_skill_in",
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": false,
 "name": "cast_skill_out",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
-"loop": false,
-"name": "cast_skill_in",
 "speed": 10.0
 } ]
 
@@ -197,7 +197,7 @@ script = ExtResource( 21 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 6
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]

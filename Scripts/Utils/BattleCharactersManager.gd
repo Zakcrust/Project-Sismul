@@ -7,6 +7,8 @@ var battlers : Array
 
 var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 
+var player_ref
+
 signal send_to_dead_pool(obj)
 signal set_post_battle_ui(value)
 
@@ -42,15 +44,12 @@ func initialize():
 func get_battlers():
 	return get_children()
 
-static func sort_battlers(a, b) -> bool:
-	return a.stats.speed > b.stats.speed
-
 func play_turn():
 	if not living_enemies():
 		victory()
 		return
 	elif not living_player():
-		defeat()
+		last_chance()
 		return
 	var new_index = (active_character.get_index() + 1) % get_child_count()
 	active_character = get_child(new_index)
@@ -77,6 +76,20 @@ func victory() -> void:
 	emit_signal("set_post_battle_ui", "Victory")
 	leave_scene(true)
 
+func last_chance() -> void:
+	var last_chance_ui = load("res://Scenes/UI/PlayerDownUI.tscn").instance()
+	last_chance_ui.connect("give_up", self, "defeat")
+	last_chance_ui.connect("take_quiz", self, "take_quiz")
+	add_child(last_chance_ui)
+
+
+func take_quiz() -> void:
+	var quiz_ui = load("res://Scenes/Quiz/QuizUI.tscn").instance()
+	quiz_ui.connect("correct", player_ref, "revive")
+	quiz_ui.connect("wrong", self , "defeat")
+	get_parent().get_node("CanvasLayer").add_child(quiz_ui)
+	
+
 func defeat() -> void:
 	for child in get_children():
 		if child.is_in_group("Enemy"):
@@ -85,7 +98,7 @@ func defeat() -> void:
 	leave_scene(false)
 
 func leave_scene(win : bool) -> void:
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	if win:
 		emit_signal("set_post_battle_ui", "")
 		var reward_ui_instance = reward_ui.instance()
@@ -97,8 +110,14 @@ func leave_scene(win : bool) -> void:
 			reward_ui_instance.load_item(load(reward.sprite_path), reward.stat_type + " +%s" % reward.reward.amount)
 		add_child(reward_ui_instance)
 		yield(reward_ui_instance,"tree_exited")
+		var transition = get_parent().get_node("TransitionScene")
+		transition.fade_in()
+		yield(transition.get_node("AnimationPlayer"), "animation_finished")
 		SceneLoader.quit_battle_scene(win)
 	else:
+		var transition = get_parent().get_node("TransitionScene")
+		transition.fade_in()
+		yield(transition.get_node("AnimationPlayer"), "animation_finished")
 		SceneLoader.quit_battle_scene(win)
 
 func living_player() -> bool:

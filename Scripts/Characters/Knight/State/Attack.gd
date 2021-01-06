@@ -33,7 +33,7 @@ func move_and_attack(pos : Vector2) -> void:
 	fsm.character.z_index += 1
 	$Tween.stop(self)
 	fsm.sprite.play("move")
-	$Tween.interpolate_property(fsm.character, "position",fsm.character.global_position, pos, 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(fsm.character, "position",fsm.character.global_position, pos, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	fsm.sprite.play("attack")
@@ -42,7 +42,7 @@ func move_and_attack(pos : Vector2) -> void:
 	fsm.sprite.play("idle")
 	yield(get_tree().create_timer(0.5), "timeout")
 	fsm.sprite.play("move")
-	$Tween.interpolate_property(fsm.character, "position",fsm.character.global_position, first_pos, 2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	$Tween.interpolate_property(fsm.character, "position",fsm.character.global_position, first_pos, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	$Tween.start()
 	yield($Tween, "tween_completed")
 	fsm.sprite.play("idle")

@@ -8,6 +8,8 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 96
+outline_size = 3
+outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]

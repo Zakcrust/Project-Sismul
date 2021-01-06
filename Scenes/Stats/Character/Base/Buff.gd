@@ -18,4 +18,5 @@ func _init(type : String, amount_init : int, turn : int):
 func turn() -> void:
 	turn_count += 1
 	if max_turn >= turn_count:
+		print("%s is expired and removed" % buff_type)
 		queue_free()

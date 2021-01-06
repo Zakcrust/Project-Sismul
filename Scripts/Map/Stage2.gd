@@ -12,3 +12,14 @@ func show_ui() -> void:
 
 func hide_ui() -> void:
 	$GameUI/GameUI.hide()
+	
+
+func fade_out() -> void:
+	$TransitionScene.fade_out()
+
+func register_children() -> void:
+	for child in get_children():
+		if child is Character:
+			child.queue_free()
+			continue
+		child.owner = self

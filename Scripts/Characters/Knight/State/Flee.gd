@@ -1,6 +1,6 @@
 extends Node
 
-var fsm: PlayerStateMachine
+var fsm: StateMachine
 
 func next(next_state):
 	get_tree()
@@ -12,8 +12,10 @@ func exit():
 
 func enter() -> void:
 	print("Current state : %s" % self.name)
-	SceneLoader.quit_battle_scene(false)
+	flee()
 
+func flee() -> void:
+	fsm.character.get_parent().defeat()
 
 func process(_delta):
 	pass

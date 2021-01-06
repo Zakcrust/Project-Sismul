@@ -4,7 +4,7 @@ class_name Stage2Boss
 
 export (PackedScene) var reward
 
-var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage1/Stage1Dialogues.gd")
+var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage2/Stage2Dialogues.gd")
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 var player_ref : Character
 

@@ -13,16 +13,29 @@ signal wrong()
 
 
 func _ready():
+	SoundAndMusic.play_music(SoundAndMusic.MINIGAME_MUSIC)
 	$Camera2D.current = true
 	set_process(false)
 	yield($AnimationPlayer, "animation_finished")
-	load_question()
+	if character != null:
+		load_question()
+	else:
+		challenge()
 	set_process(true)
 
+func challenge() -> void:
+	var quiz_challenge = Quiz.new(QuestionPool.get_random_question(), 5.0)
+	quiz = quiz_challenge
+	$QuizContainer/ColorRect/CenterContainer/Question.text = quiz.multiple_choice_question.question.question
+	answer = quiz.multiple_choice_question.question.answer
+	question_time = quiz.time
+	time_reduction = $QuizContainer/TimebarContainer/TimeBar.max_value / question_time
+	load_answers()
 
 func load_question() -> void:
-	connect("correct", character, "redeem_reward")
-	connect("wrong", character, "remove_object")
+	if character != null:
+		connect("correct", character, "redeem_reward")
+		connect("wrong", character, "remove_object")
 	#load question and answer
 	$QuizContainer/ColorRect/CenterContainer/Question.text = quiz.multiple_choice_question.question.question
 	answer = quiz.multiple_choice_question.question.answer
@@ -30,6 +43,9 @@ func load_question() -> void:
 	reward = quiz.reward
 	time_reduction = $QuizContainer/TimebarContainer/TimeBar.max_value / question_time
 	print(time_reduction)
+	load_answers()
+
+func load_answers() -> void:
 	var choices : Array = quiz.multiple_choice_question.choices.choices
 	choices.shuffle()
 	#load answer
@@ -40,6 +56,7 @@ func load_question() -> void:
 	$QuizContainer/ColorRect/HBoxContainer.show()
 	$QuizContainer/ColorRect/CenterContainer.show()
 	print("question loaded")
+
 
 func check_answer(ans : String) -> void:
 	disable_buttons()
@@ -52,8 +69,10 @@ func check_answer(ans : String) -> void:
 		SoundAndMusic.play_sfx(SoundAndMusic.WRONG_SFX)
 		print("Wrong")
 		emit_signal("wrong")
-	character.activate()
-	character.enable_camera()
+	yield(get_tree().create_timer(0.5), "timeout")
+	if character != null:
+		character.activate()
+		character.enable_camera()
 	queue_free()
 	
 
@@ -84,3 +103,11 @@ func _process(delta):
 	$QuizContainer/TimebarContainer/TimeBar.value -= (time_reduction * delta)
 	if $QuizContainer/TimebarContainer/TimeBar.value <= 0:
 		set_process(false)
+		SoundAndMusic.play_sfx(SoundAndMusic.WRONG_SFX)
+		yield(get_tree().create_timer(0.5), "timeout")
+		if character != null:
+			character.activate()
+			character.enable_camera()
+		emit_signal("wrong")
+		queue_free()
+		

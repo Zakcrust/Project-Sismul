@@ -3,8 +3,6 @@ extends CanvasLayer
 
 var dialog_type : DialogType = DialogType.new()
 
-#var stage_1 = load("res://Scripts/Dialog/Resource/BossStage/Stage1Dialogues.gd").new()
-
 var dialog_answer : PackedScene = load("res://Scenes/Dialog/DialogAnswer.tscn")
 var answer : String
 var question_answers : Array
@@ -42,15 +40,16 @@ func load_dialog(dialogues : Array) -> void:
 
 func read_dialog(dialog : Dialog) -> void:
 	clear_answers()
+	$DialogContainer/HBoxContainer/Character.texture = load(dialog.dialog_sprite_path)
+	$DialogContainer/HBoxContainer/CharacterName.text = dialog.dialog_character_name
 	if dialog.dialog_type == dialog_type.STATEMENT:
-		$DialogContainer/HBoxContainer/CharacterName.text = dialog.dialog_character_name
 		$DialogContainer/Statement.text = dialog.dialog_text
 		$DialogContainer/Tween.interpolate_property($DialogContainer/Statement, "percent_visible", 0, 1.0, dialog.dialog_text.length() / 50.0)
 		$DialogContainer/Tween.start()
 		yield($DialogContainer/Tween, "tween_all_completed")
 		$DialogContainer/Next.show()
 	elif dialog.dialog_type == dialog_type.QUESTION:
-		$DialogContainer/HBoxContainer/CharacterName.text = dialog.dialog_character_name
+#		$DialogContainer/HBoxContainer/CharacterName.text = dialog.dialog_character_name
 		$DialogContainer/Statement.text = dialog.dialog_text
 		$DialogContainer/Tween.interpolate_property($DialogContainer/Statement, "percent_visible", 0, 1.0, dialog.dialog_text.length() / 50.0)
 		$DialogContainer/Tween.start()

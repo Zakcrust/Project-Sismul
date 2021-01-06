@@ -12,6 +12,10 @@ var battle_buff : StatsBuff = StatsBuff.new()
 
 onready var target : Position2D = $Target setget , get_target
 
+func _init():
+	stats = PlayerData.stats
+	load_stats()
+
 func get_target() -> Position2D:
 	return target
 
@@ -79,9 +83,8 @@ func stats_report() -> void:
 	print("Energy : %s" % battle_stats.energy)
 	print("==============")
 
-
-
 func hurt(damage : int) -> void:
+	get_parent().player_ref = self
 	print("damage dealt : %s" % (damage - battle_stats.armor))
 	battle_stats.health -= (damage - battle_stats.armor)
 	$CharacterUI.set_health_bar(battle_stats.health)
@@ -99,3 +102,16 @@ func check_health() -> void:
 		battle_stats.health = 0
 		$CharacterUI.hide()
 		$State.change_to("Dead")
+
+
+func revive(reward) -> void:
+	SoundAndMusic.play_music(SoundAndMusic.BATTLE_MUSIC)
+	$State/Heal/HealParticles.position = global_position + Vector2(14, 78)
+	$State/Heal/HealParticles.emitting = true
+	$CharacterUI.show()
+	yield(get_tree().create_timer(1.0), "timeout")
+	battle_stats.health = stats.health
+	update_health_bar_ui()
+	$CharacterUI.set_health_bar(battle_stats.health)
+	yield(get_tree().create_timer(0.5), "timeout")
+	$State.change_to("Ready")
