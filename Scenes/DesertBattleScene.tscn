@@ -70,5 +70,4 @@ position = Vector2( 1978.62, 908.602 )
 position = Vector2( 2223.96, 1000.88 )
 
 [node name="TransitionScene" parent="." instance=ExtResource( 2 )]
-pause_mode = 2
 [connection signal="set_post_battle_ui" from="TurnQueue" to="CanvasLayer" method="_on_TurnQueue_set_post_battle_ui"]

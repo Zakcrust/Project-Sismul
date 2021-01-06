@@ -52,6 +52,7 @@ func move_and_attack(pos : Vector2) -> void:
 
 func cast_attack() -> void:
 	var attacked_enemy  = attack_cast.get_collider()
+	print("collided object %s " % attacked_enemy)
 	if attacked_enemy.is_in_group("Enemy"):
 		attacked_enemy.hurt(fsm.character.battle_stats.damage)
 

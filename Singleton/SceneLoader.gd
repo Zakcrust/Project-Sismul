@@ -25,8 +25,10 @@ func _ready():
 	available_stages.append(STAGE_3)
 
 
-func load_scene(scene : Scene, spawn_pos : Vector2):
+func load_scene(scene : Scene, spawn_pos : Vector2 = Vector2()):
 	current_scene = scene
+	var running_scene = get_tree().get_root().get_children().back()
+	get_tree().get_root().remove_child(running_scene)
 	match(scene.scene_name):
 		scenes.STAGE_1:
 			for child in get_tree().get_root().get_children():
@@ -34,17 +36,20 @@ func load_scene(scene : Scene, spawn_pos : Vector2):
 					get_tree().current_scene = STAGE_1
 					return
 			get_tree().get_root().add_child(STAGE_1)
+			get_tree().current_scene = STAGE_1
 		scenes.STAGE_2:
 			for child in get_tree().get_root().get_children():
 				if child == STAGE_2:
 					get_tree().current_scene = STAGE_2
 			get_tree().get_root().add_child(STAGE_2)
+			get_tree().current_scene = STAGE_2
 		scenes.STAGE_3:
 			for child in get_tree().get_root().get_children():
 				if child == STAGE_3:
 					get_tree().current_scene = STAGE_3
 					return
 			get_tree().get_root().add_child(STAGE_3)
+			get_tree().current_scene = STAGE_3
 #		var prev_scene = get_tree().current_scene
 #		running_scene = load(scene.saved_scene_path)
 #		var scene_instance = running_scene.instance()

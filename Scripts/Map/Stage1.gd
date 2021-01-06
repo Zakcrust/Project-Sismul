@@ -10,7 +10,7 @@ func _ready():
 	for child in get_children():
 		if child is Character:
 			return
-	spawn_player(FIRST_SPAWN_POSITION)
+	spawn_player($Position2D.global_position)
 
 func spawn_player(pos : Vector2) -> void:
 	var player = player_scene.instance()

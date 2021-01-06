@@ -5,7 +5,7 @@ class_name Character
 var player_battler : PackedScene = load("res://Scenes/Battlers/Knight.tscn")
 var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 
-var boundary : Vector2 = Vector2(2340, 952)
+var boundary : Vector2 = Vector2(3200, 3200)
 
 signal flicker_done()
 
@@ -36,6 +36,7 @@ func redeem_reward(reward) -> void:
 	add_child(reward_ui_instance)
 	yield(reward_ui_instance,"tree_exited")
 	get_parent().show_ui()
+	SoundAndMusic.play_music(SoundAndMusic.PEKORA_BGM)
 	
 func flicker_transition() -> void:
 	var parent = get_parent()

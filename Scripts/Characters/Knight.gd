@@ -30,6 +30,7 @@ func _ready():
 	stats = PlayerData.stats
 	load_stats()
 	$AttackCast.collide_with_areas = true
+	$AttackCast.collide_with_bodies = false
 	$Sprite.play("idle")
 	update_health_bar_ui()
 

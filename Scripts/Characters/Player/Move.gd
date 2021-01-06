@@ -64,7 +64,7 @@ func _interact() -> void:
 func face_to(direction : Vector2) -> void:
 	if direction.x < 0:
 		fsm.sprite.scale.x = -1
-	else:
+	elif direction.x > 0:
 		fsm.sprite.scale.x = 1
 
 
