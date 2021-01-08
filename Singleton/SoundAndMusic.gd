@@ -13,6 +13,9 @@ func _ready():
 
 
 func play_music(path : String) -> void:
+	var loaded_stream : AudioStream = load(path)
+	if $Music.stream == loaded_stream:
+		return
 	$Music.stream = load(path)
 	$Music.play()
 

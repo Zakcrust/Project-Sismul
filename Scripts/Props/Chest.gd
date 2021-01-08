@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var quiz : Quiz = Quiz.new(QuestionPool.get_random_question(),3.0)
+var quiz : Quiz = Quiz.new(ArithmethicGenerator.new().generate_aritmethic(),20.0)
 
 export (PackedScene) var reward
 

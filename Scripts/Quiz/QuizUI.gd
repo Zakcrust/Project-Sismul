@@ -24,7 +24,7 @@ func _ready():
 	set_process(true)
 
 func challenge() -> void:
-	var quiz_challenge = Quiz.new(QuestionPool.get_random_question(), 5.0)
+	var quiz_challenge = Quiz.new(ArithmethicGenerator.new().generate_aritmethic(), 20.0)
 	quiz = quiz_challenge
 	$QuizContainer/ColorRect/CenterContainer/Question.text = quiz.multiple_choice_question.question.question
 	answer = quiz.multiple_choice_question.question.answer

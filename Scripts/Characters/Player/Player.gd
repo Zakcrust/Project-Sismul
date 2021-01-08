@@ -5,7 +5,7 @@ class_name Character
 var player_battler : PackedScene = load("res://Scenes/Battlers/Knight.tscn")
 var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 
-var boundary : Vector2 = Vector2(3200, 3200)
+var boundary : Vector2 = Vector2(3200, 3160)
 
 signal flicker_done()
 
@@ -30,9 +30,9 @@ func redeem_reward(reward) -> void:
 	PlayerData.add_reward(reward)
 	var reward_ui_instance = reward_ui.instance()
 	if reward is ItemReward:
-		reward_ui_instance.load_item(load(reward.item.item_asset_path), reward.item.item_name + " x%s" % reward.reward.amount)
+		reward_ui_instance.load_item(load(reward.item.item_asset_path), reward.item.item_name + "  x%s" % reward.reward.amount)
 	elif reward is StatReward:
-		reward_ui_instance.load_item(load(reward.sprite_path), reward.stat_type + " x%s" % reward.reward.amount)
+		reward_ui_instance.load_item(load(reward.sprite_path), reward.stat_type + "  +%s" % reward.reward.amount)
 	add_child(reward_ui_instance)
 	yield(reward_ui_instance,"tree_exited")
 	get_parent().show_ui()

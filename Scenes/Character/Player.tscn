@@ -48,7 +48,7 @@ script = ExtResource( 24 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 1
+frame = 8
 playing = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]
@@ -72,4 +72,4 @@ zoom = Vector2( 0.6, 0.6 )
 limit_left = 0
 limit_top = 0
 limit_right = 3200
-limit_bottom = 3200
+limit_bottom = 3264

@@ -57,7 +57,7 @@ func read_dialog(dialog : Dialog) -> void:
 		for dialog_ans in dialog.dialog_question.question_answer:
 			var answer_instance = dialog_answer.instance()
 			if dialog_ans is DialogAnswer:
-				answer_instance.set_answer_text(dialog_answer.dialog_answer)
+				answer_instance.set_answer_text(dialog_ans.dialog_answer)
 				answer_instance.connect("send_answer", self, "check_answer")
 				question_answers.append(dialog_ans)
 				$DialogContainer/Answers.add_child(answer_instance)

@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "ArithmethicGenerator",
+"language": "GDScript",
+"path": "res://Scripts/Utils/ArithmeticGenerator.gd"
+}, {
+"base": "Node",
 "class": "Buff",
 "language": "GDScript",
 "path": "res://Scenes/Stats/Character/Base/Buff.gd"
@@ -205,6 +210,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Utils/BattleCharactersManager.gd"
 } ]
 _global_script_class_icons={
+"ArithmethicGenerator": "",
 "Buff": "",
 "Character": "",
 "Dialog": "",
@@ -268,6 +274,7 @@ Minimax="*res://Scripts/AI/Minimax.gd"
 
 window/size/width=2340
 window/size/height=1080
+window/size/fullscreen=true
 window/size/test_width=585
 window/size/test_height=270
 window/stretch/mode="2d"

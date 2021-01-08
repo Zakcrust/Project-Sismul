@@ -14,7 +14,7 @@ func exit():
 func enter() -> void:
 	print("Current state : %s" % self.name)
 	add_attack_buff()
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	next("EndTurn")
 
 func add_attack_buff() -> void:

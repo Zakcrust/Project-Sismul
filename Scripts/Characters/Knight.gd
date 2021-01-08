@@ -114,6 +114,7 @@ func revive(_reward) -> void:
 	$State/Heal/HealParticles.position = global_position + Vector2(14, 78)
 	$State/Heal/HealParticles.emitting = true
 	$CharacterUI.show()
+	$BuffUI.show()
 	yield(get_tree().create_timer(1.0), "timeout")
 	battle_stats.health = stats.health
 	update_health_bar_ui()

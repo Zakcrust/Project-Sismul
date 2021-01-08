@@ -5,6 +5,7 @@ class_name Stage1Boss
 export (PackedScene) var reward
 
 var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage1/Stage1Dialogues.gd")
+var failed_dialog : GDScript = load("res://Scripts/Dialog/Resource/failed_dialog.gd")
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 var player_ref : Character
 
@@ -23,8 +24,12 @@ func _on_Detector_body_exited(body):
 
 
 func start_dialog() -> void:
+	var dialog
+	if get_parent().is_enemy_avaiable():
+		dialog = failed_dialog.new()
+	else:
+		dialog = dialog_data.new()
 	var dialog_instance = dialog_scene.instance()
-	var dialog = dialog_data.new()
 	add_child(dialog_instance)
 	dialog_instance.connect("dialog_success", self, "dialog_success")
 	dialog_instance.connect("dialog_failed", self, "dialog_failed")

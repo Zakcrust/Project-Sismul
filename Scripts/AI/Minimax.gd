@@ -1,9 +1,5 @@
 extends Node
 
-var tree_root : MinimaxNode
-var tree : MinimaxNode
-var minimax_nodes : Array
-
 var player_root_node : MinimaxNode
 
 var states : Array = [MinimaxStates.ATTACK,MinimaxStates.DEFEND,MinimaxStates.BOOST]
@@ -30,6 +26,9 @@ func _ready():
 func minimax(root : MinimaxNode ,children_amount : int , depth : int) -> MinimaxNode:
 	var tree : MinimaxNode
 	var leaves : Array
+	for child in root.get_children():
+		root.remove_child(child)
+		child.queue_free()
 	tree = construct_tree(root, children_amount, depth)
 	leaves = get_all_children(tree)
 
@@ -37,11 +36,8 @@ func minimax(root : MinimaxNode ,children_amount : int , depth : int) -> Minimax
 	
 
 func traverse_from_leaves_to_root(tree : MinimaxNode,nodes : Array) -> MinimaxNode:
-	print(nodes.size())
-	var counter = 0
 	var leaf : MinimaxNode
 	for i in range(nodes.size() -1, 0, -1):
-		counter += 1
 		leaf = nodes[i]
 		if leaf.get_parent() == null:
 			pass
@@ -57,11 +53,10 @@ func traverse_from_leaves_to_root(tree : MinimaxNode,nodes : Array) -> MinimaxNo
 		else:
 			tree.score = child.score if child.score < tree.score else tree.score
 			tree.state = child.state if tree.score == child.score else tree.state
-		
-	print("Leaves count : %s" % counter )
 	return tree
 
 func get_all_children(root : MinimaxNode, children_nodes : Array = [], minimax_nodes : Array = []) -> Array:
+	
 	var children : Array
 	if root != null:
 		var first_children : Array = root.get_children()
@@ -84,12 +79,6 @@ func get_all_children(root : MinimaxNode, children_nodes : Array = [], minimax_n
 			return get_all_children(null, children, minimax_nodes)
 
 
-func set_root(root : MinimaxNode) ->  void:
-	tree_root = root
-
-func start_minimax(root : MinimaxNode) -> void:
-	set_root(root)
-
 func construct_tree(root : MinimaxNode ,children_amount : int , depth : int, children_node : Array = []) ->  Node:
 	if depth == 0:
 		return root
@@ -103,7 +92,7 @@ func construct_tree(root : MinimaxNode ,children_amount : int , depth : int, chi
 				arr.shuffle()
 				var score : int
 				if child_node.is_maximizer:
-					score = enemy_state.get_score(state)
+					score = -enemy_state.get_score(state)
 				else:
 					score = player_state.get_score(state)
 				var minimax_node = MinimaxNode.new(state, score, !child_node.is_maximizer)

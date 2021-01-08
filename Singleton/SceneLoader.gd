@@ -26,12 +26,16 @@ func _ready():
 func load_scene(scene : Scene, _spawn_pos : Vector2 = Vector2()):
 	current_scene = scene
 	var running_scene = get_tree().get_root().get_children().back()
+#	if running_scene.has_method("fade_in"):
+#		running_scene.fade_in()
+#		yield(running_scene, "fade_in_done")
 	get_tree().get_root().remove_child(running_scene)
 	match(scene.scene_name):
 		scenes.STAGE_1:
 			for child in get_tree().get_root().get_children():
 				if child == STAGE_1:
 					get_tree().current_scene = STAGE_1
+					get_tree().current_scene.fade_out()
 					return
 			get_tree().get_root().add_child(STAGE_1)
 			get_tree().current_scene = STAGE_1
@@ -39,6 +43,7 @@ func load_scene(scene : Scene, _spawn_pos : Vector2 = Vector2()):
 			for child in get_tree().get_root().get_children():
 				if child == STAGE_2:
 					get_tree().current_scene = STAGE_2
+					get_tree().current_scene.fade_out()
 			get_tree().get_root().add_child(STAGE_2)
 			get_tree().current_scene = STAGE_2
 		scenes.STAGE_3:
@@ -48,6 +53,7 @@ func load_scene(scene : Scene, _spawn_pos : Vector2 = Vector2()):
 					return
 			get_tree().get_root().add_child(STAGE_3)
 			get_tree().current_scene = STAGE_3
+	get_tree().current_scene.spawn_player(_spawn_pos)
 #		var prev_scene = get_tree().current_scene
 #		running_scene = load(scene.saved_scene_path)
 #		var scene_instance = running_scene.instance()
