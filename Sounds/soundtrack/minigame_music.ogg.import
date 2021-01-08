@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/minigame_music.ogg-3b3a6a06d4699d83f79d3d713f7e3922.oggstr"
+
+[deps]
+
+source_file="res://Sounds/soundtrack/minigame_music.ogg"
+dest_files=[ "res://.import/minigame_music.ogg-3b3a6a06d4699d83f79d3d713f7e3922.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

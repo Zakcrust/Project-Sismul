@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/FoggyWoods.ogg-3e1021a539c0a5018f5d2995bfa41d51.oggstr"
+
+[deps]
+
+source_file="res://Sounds/soundtrack/FoggyWoods.ogg"
+dest_files=[ "res://.import/FoggyWoods.ogg-3e1021a539c0a5018f5d2995bfa41d51.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
