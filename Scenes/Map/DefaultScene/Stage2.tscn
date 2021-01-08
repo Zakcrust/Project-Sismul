@@ -83,7 +83,7 @@ scale = Vector2( -0.4, 0.4 )
 reward = ExtResource( 7 )
 
 [node name="Sprite" parent="Stage2Boss" index="0"]
-frame = 5
+frame = 3
 
 [node name="Collider" parent="Stage2Boss" index="1"]
 position = Vector2( -72.5, 118.333 )

@@ -81,9 +81,11 @@ func load_battle_scene(battlers : Array) -> void:
 func quit_battle_scene(win : bool) -> void:
 	SoundAndMusic.play_music(SoundAndMusic.PEKORA_BGM)
 	var children = get_tree().get_root().get_children()
-	var current_battle_scene = children.back()
-	get_tree().current_scene = children[-2]
+	var current_battle_scene = children.pop_back()
+	get_tree().get_root().remove_child(current_battle_scene)
 	current_battle_scene.queue_free()
+#	get_tree().current_scene = children[-2]
+	get_tree().current_scene = get_tree().get_root().get_children().back()
 	get_tree().current_scene.spawn_player(player_last_position)
 	get_tree().current_scene.show_ui()
 	if win:

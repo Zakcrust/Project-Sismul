@@ -21,6 +21,7 @@ func get_object():
 	return object_to_interact
 
 func remove_object() -> void:
+	get_parent().show_ui()
 	if object_to_interact != null:
 		object_to_interact.queue_free()
 
