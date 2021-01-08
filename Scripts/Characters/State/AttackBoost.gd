@@ -2,10 +2,9 @@ extends Node
 
 var fsm: EnemyStateMachine
 
-var attack_buff : Buff = Buff.new(ItemEffectTypes.ATTACK_BOOST, 3 , 5)
+var attack_buff = load("res://Scripts/Characters/MekaMongke/Boost/AttackBoostMongke.gd")
 
 func next(next_state):
-	get_tree()
 	fsm.change_to(next_state)
 
 func exit():
@@ -15,11 +14,11 @@ func exit():
 func enter() -> void:
 	print("Current state : %s" % self.name)
 	add_attack_buff()
-	yield(get_tree().create_timer(2.0), "timeout")
+	yield(get_tree().create_timer(1.0), "timeout")
 	next("EndTurn")
 
 func add_attack_buff() -> void:
-	fsm.character.battle_buff.damage_buff = attack_buff
+	fsm.character.battle_buff.damage_buff = attack_buff.new()
 
 
 func process(_delta):

@@ -42,6 +42,8 @@ func use_item() -> void:
 	$HealParticles.emitting = true
 	yield(get_tree().create_timer(1.5), "timeout")
 	$HealParticles.emitting = false
+	fsm.character.minimax_node.state = MinimaxStates.BOOST
+	fsm.character.minimax_node.score = 3
 	next("EndTurn")
 	
 

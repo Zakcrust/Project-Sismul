@@ -15,6 +15,8 @@ onready var character : Player = get_node(character_path)
 onready var sprite : AnimatedSprite = get_node(sprite_path)
 onready var action_menu : Control = get_node(action_menu_path)
 
+
+
 signal activate_action_menu()
 signal disactivate_action_menu()
 

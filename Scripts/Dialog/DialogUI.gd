@@ -54,12 +54,12 @@ func read_dialog(dialog : Dialog) -> void:
 		$DialogContainer/Tween.interpolate_property($DialogContainer/Statement, "percent_visible", 0, 1.0, dialog.dialog_text.length() / 50.0)
 		$DialogContainer/Tween.start()
 		yield($DialogContainer/Tween, "tween_all_completed")
-		for answer in dialog.dialog_question.question_answer:
+		for dialog_ans in dialog.dialog_question.question_answer:
 			var answer_instance = dialog_answer.instance()
-			if answer is DialogAnswer:
-				answer_instance.set_answer_text(answer.dialog_answer)
+			if dialog_ans is DialogAnswer:
+				answer_instance.set_answer_text(dialog_answer.dialog_answer)
 				answer_instance.connect("send_answer", self, "check_answer")
-				question_answers.append(answer)
+				question_answers.append(dialog_ans)
 				$DialogContainer/Answers.add_child(answer_instance)
 	elif dialog.dialog_type == dialog_type.STATEMENT_END:
 		$DialogContainer/HBoxContainer/CharacterName.text = dialog.dialog_character_name
@@ -72,11 +72,11 @@ func read_dialog(dialog : Dialog) -> void:
 
 func check_answer(ans : String) -> void:
 	print("Checking answer ...")
-	for answer in question_answers:
-		if ans == answer.dialog_answer:
+	for answers in question_answers:
+		if ans == answers.dialog_answer:
 			var first_position : int = dialog_count
 			print("Dialogue position : %s" % first_position)
-			for dialog in answer.next_dialog:
+			for dialog in answers.next_dialog:
 				dialog_array.insert(first_position,dialog)
 				first_position += 1
 				emit_signal("next_dialog")

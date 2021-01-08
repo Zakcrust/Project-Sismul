@@ -90,6 +90,21 @@ _global_script_classes=[ {
 "path": "res://Scripts/Item/ItemList.gd"
 }, {
 "base": "Node",
+"class": "MinimaxNode",
+"language": "GDScript",
+"path": "res://Scripts/AI/MinimaxNode.gd"
+}, {
+"base": "Node",
+"class": "MinimaxState",
+"language": "GDScript",
+"path": "res://Scripts/AI/PlayerMinimaxState.gd"
+}, {
+"base": "Node",
+"class": "MinimaxStates",
+"language": "GDScript",
+"path": "res://Scripts/AI/MinimaxStates.gd"
+}, {
+"base": "Node",
 "class": "MultipleChoice",
 "language": "GDScript",
 "path": "res://Scripts/Quiz/MultipleChoice.gd"
@@ -206,6 +221,9 @@ _global_script_class_icons={
 "ItemEffectTypes": "",
 "ItemReward": "",
 "ListItem": "",
+"MinimaxNode": "",
+"MinimaxState": "",
+"MinimaxStates": "",
 "MultipleChoice": "",
 "MultipleChoiceQuestion": "",
 "Player": "",
@@ -244,6 +262,7 @@ PlayerData="*res://Singleton/PlayerData.gd"
 ItemManager="*res://Scripts/Item/Base/ItemManager.gd"
 SceneLoader="*res://Singleton/SceneLoader.gd"
 SoundAndMusic="*res://Singleton/SoundAndMusic.tscn"
+Minimax="*res://Scripts/AI/Minimax.gd"
 
 [display]
 

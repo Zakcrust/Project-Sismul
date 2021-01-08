@@ -9,12 +9,12 @@ var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 
 var player_ref
 
-signal send_to_dead_pool(obj)
+#signal send_to_dead_pool(obj)
 signal set_post_battle_ui(value)
 
 
 func get_enemies() -> Array:
-	var enemies : Array
+	var enemies : Array = []
 	for child in get_children():
 		if child.is_in_group("Enemy"):
 			if child.get_current_state() != "Dead":
@@ -22,7 +22,7 @@ func get_enemies() -> Array:
 	return enemies
 
 func get_players() -> Array:
-	var players : Array
+	var players : Array = []
 	for child in get_children():
 		if child.is_in_group("Player"):
 			if child.get_current_state() != "Dead":

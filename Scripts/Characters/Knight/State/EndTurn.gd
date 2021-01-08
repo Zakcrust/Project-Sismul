@@ -13,6 +13,7 @@ func exit():
 func enter() -> void:
 	print("Current state : %s" % self.name)
 	fsm.character.end_turn()
+	Minimax.player_root_node = fsm.character.minimax_node
 	fsm.sprite.play("idle")
 
 func process(_delta):

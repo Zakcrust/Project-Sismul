@@ -32,8 +32,9 @@ func _on_Help_pressed():
 
 
 func _on_SaveAndQuit_pressed():
-	pass # Replace with function body.
+	SceneLoader.save_scenes()
+	get_tree().change_scene("res://Scenes/UI/MainMenu.tscn")
 
 
 func _on_QuitWithoutSaving_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene("res://Scenes/UI/MainMenu.tscn")

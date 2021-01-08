@@ -46,6 +46,7 @@ func cycle_turn() -> void:
 	if armour_buff != null:
 		armour_buff.turn()
 	if damage_buff != null:
+		print("Cycle damage turn...")
 		damage_buff.turn()
 	if speed_buff != null:
 		speed_buff.turn()

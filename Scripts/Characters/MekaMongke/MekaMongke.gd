@@ -3,25 +3,34 @@ extends Area2D
 signal end_turn
 
 var stats : Stats
-var battle_stats : Stats
+var battle_stats : Stats  = Stats.new(0,0,0,0,0)
 var battle_buff : StatsBuff = StatsBuff.new()
 onready var target = $Target setget , get_target
 
 func _init():
 	stats = Stats.new(10,10,6,0,2) 
-	battle_stats = stats
+	load_stats()
+	
 func _ready():
 	$Sprite/CharacterUI.set_health_bar_max_value(battle_stats.health)
 	$Anim.play("idle")
 
+func load_stats() -> void:
+	battle_stats.health = stats.health
+	battle_stats.damage = stats.damage
+	battle_stats.armor = stats.armor
+	battle_stats.energy = stats.energy
+	battle_stats.speed = stats.speed
+
 func check_buff() -> void:
 	var current_health = battle_stats.health
-	battle_stats = stats
+	load_stats()
 	battle_stats.health = current_health
 	$BuffUI.hide_all_buff()
 	if battle_buff.damage_buff != null:
 		battle_stats.damage = battle_stats.damage + battle_buff.damage_buff.amount
 		$BuffUI.show_buff(battle_buff.damage_buff.buff_type)
+		print("Current damage : %s" % battle_stats.damage)
 	if battle_buff.speed_buff != null:
 		battle_stats.speed = battle_stats.speed + battle_buff.speed_buff.amount
 		$BuffUI.show_buff(battle_buff.speed_buff.buff_type)
@@ -57,6 +66,7 @@ func hurt(damage : int) -> void:
 		$Anim.stop()
 		$Anim.play("dead")
 		$Sprite/CharacterUI.hide()
+		$BuffUI.hide()
 		$State.change_to("Dead")
 		return
 	$Anim.play("hurt")
@@ -72,7 +82,3 @@ func get_current_state() -> String:
 func victory() -> void:
 	$Anim.stop()
 	$Anim.play("idle")
-
-
-func _on_Anim_animation_finished(anim_name):
-	pass

@@ -26,6 +26,8 @@ func defend() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	fsm.sprite.play("cast_skill_out")
 	yield(fsm.sprite, "animation_finished")
+	fsm.character.minimax_node.state = MinimaxStates.DEFEND
+	fsm.character.minimax_node.score = defend_buff.amount
 	next("EndTurn")
 
 func add_defend_buff() -> void:

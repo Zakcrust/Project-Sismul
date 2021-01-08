@@ -48,6 +48,8 @@ func move_and_attack(pos : Vector2) -> void:
 	fsm.sprite.play("idle")
 	fsm.character.z_index -= 1
 	attack_cast.enabled = false
+	fsm.character.minimax_node.state = MinimaxStates.ATTACK
+	fsm.character.minimax_node.score = fsm.character.battle_stats.damage
 	next("EndTurn")
 
 func cast_attack() -> void:

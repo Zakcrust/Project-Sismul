@@ -1,7 +1,5 @@
 extends Node
 
-
-var running_scene : PackedScene
 var current_scene : Scene
 
 var battle_scene : PackedScene
@@ -25,7 +23,7 @@ func _ready():
 	available_stages.append(STAGE_3)
 
 
-func load_scene(scene : Scene, spawn_pos : Vector2 = Vector2()):
+func load_scene(scene : Scene, _spawn_pos : Vector2 = Vector2()):
 	current_scene = scene
 	var running_scene = get_tree().get_root().get_children().back()
 	get_tree().get_root().remove_child(running_scene)
@@ -86,11 +84,31 @@ func quit_battle_scene(win : bool) -> void:
 		BattleData.enemy_character.queue_free()
 		BattleData.enemy_character = null
 
+func load_scenes() -> void:
+	var dir : Directory = Directory.new()
+	
+	if dir.file_exists(scenes.get_scene(scenes.STAGE_1).saved_scene_path):
+		STAGE_1 = load(scenes.get_scene(scenes.STAGE_1).saved_scene_path).instance()
+	else:
+		STAGE_1 = load(scenes.get_scene(scenes.STAGE_1).default_scene_path).instance()
+		
+	if dir.file_exists(scenes.get_scene(scenes.STAGE_2).saved_scene_path):
+		STAGE_2 = load(scenes.get_scene(scenes.STAGE_2).saved_scene_path).instance()
+	else:
+		STAGE_2 = load(scenes.get_scene(scenes.STAGE_2).default_scene_path).instance()
+		
+	if dir.file_exists(scenes.get_scene(scenes.STAGE_3).saved_scene_path):
+		STAGE_3 = load(scenes.get_scene(scenes.STAGE_3).saved_scene_path).instance()
+	else:
+		STAGE_3 = load(scenes.get_scene(scenes.STAGE_3).default_scene_path).instance()
+
 
 func save_scenes() -> void:
 	var counter = 0
 	for stage in available_stages:
 		counter += 1
+		if not stage.is_inside_tree():
+			continue
 		stage.register_children()
 		var packed_scene : PackedScene = PackedScene.new()
 		packed_scene.pack(stage)

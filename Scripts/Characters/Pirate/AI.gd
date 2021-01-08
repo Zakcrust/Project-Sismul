@@ -4,28 +4,24 @@ onready var fsm : EnemyStateMachine = get_parent().get_node("State")
 
 var player
 
-var player_possible_state
+var minimax_result : MinimaxNode
 
 func play_turn() -> void:
-	fsm.change_to("Attack")
+	play_minimax_turn()
 #	if(fsm.character.battle_buff.damage_buff != null):
 #		fsm.change_to("Attack")
 #	else:
 #		fsm.change_to("AttackBoost")
+	
 
-
-func minimax(depth) -> void:
-	pass
-
-class MinimaxNode:
-	var value : float = 0
-	var child : Array
-	var type : String
-
-
-class MinimaxTypes:
-	const BOOST = "BOOST"
-	const CONSTANT = "CONSTANT"
-
-func get_all_possible_state() -> void:
-	pass
+func play_minimax_turn() -> void:
+	minimax_result = Minimax.minimax(Minimax.player_root_node, 3, 6)
+	match(minimax_result.state):
+		MinimaxStates.ATTACK:
+			fsm.change_to("Attack")
+		MinimaxStates.DEFEND:
+			fsm.change_to("Defend")
+		MinimaxStates.BOOST:
+			fsm.change_to("AttackBoost")
+		_:
+			fsm.change_to("EndTurn")

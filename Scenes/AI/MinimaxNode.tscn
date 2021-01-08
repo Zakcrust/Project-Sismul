@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/AI/MinimaxNode.gd" type="Script" id=1]
+
+[node name="MinimaxNode" type="Node"]
+script = ExtResource( 1 )

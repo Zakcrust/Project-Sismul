@@ -8,7 +8,6 @@ onready var attack_cast : RayCast2D = get_parent().get_parent().get_node("Attack
 var player : Player
 
 func next(next_state):
-	get_tree()
 	fsm.change_to(next_state)
 
 func exit():

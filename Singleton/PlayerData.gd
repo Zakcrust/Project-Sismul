@@ -28,5 +28,5 @@ func redeem_stat_reward(reward : StatReward) -> void:
 
 func redeem_item_reward(reward : ItemReward) -> void:
 	if reward is ItemReward:
-		for i in range(0, reward.reward.amount):
+		for _i in range(0, reward.reward.amount):
 			inventory.items.append(reward.item)

@@ -10,6 +10,8 @@ var stats : Stats
 var battle_stats : Stats = Stats.new(0,0,0,0,0)
 var battle_buff : StatsBuff = StatsBuff.new()
 
+var minimax_node : MinimaxNode = MinimaxNode.new(0,0,true)
+
 onready var target : Position2D = $Target setget , get_target
 
 func _init():
@@ -60,6 +62,7 @@ func get_stats() -> Stats:
 func victory() -> void:
 	$Sprite.play("cast_skill_in")
 	yield($Sprite, "animation_finished")
+	yield(get_tree().create_timer(1.0), "timeout")
 	$Sprite.play("cast_skill_out")
 	yield($Sprite, "animation_finished")
 	$Sprite.play("idle")
@@ -102,10 +105,11 @@ func check_health() -> void:
 	if battle_stats.health <= 0:
 		battle_stats.health = 0
 		$CharacterUI.hide()
+		$BuffUI.hide()
 		$State.change_to("Dead")
 
 
-func revive(reward) -> void:
+func revive(_reward) -> void:
 	SoundAndMusic.play_music(SoundAndMusic.BATTLE_MUSIC)
 	$State/Heal/HealParticles.position = global_position + Vector2(14, 78)
 	$State/Heal/HealParticles.emitting = true
