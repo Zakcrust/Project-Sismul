@@ -10,9 +10,9 @@ var scene_list = {
 	STAGE_1 : Scene.new("res://Scenes/Map/DefaultScene/Stage1.tscn","res://Scenes/Map/SavedScene/Stage1.tscn",
 				load("res://Scenes/ForestBattleScene.tscn"),"STAGE_1"),
 	STAGE_2 : Scene.new("res://Scenes/Map/DefaultScene/Stage2.tscn", "res://Scenes/Map/SavedScene/Stage2.tscn",
-				load("res://Scenes/SwampBattleScene.tscn"),"STAGE_2"),
+				load("res://Scenes/DesertBattleScene.tscn"),"STAGE_2"),
 	STAGE_3 : Scene.new("res://Scenes/Map/DefaultScene/Stage3.tscn", "res://Scenes/Map/SavedScene/Stage3.tscn",
-				load("res://Scenes/DesertBattleScene.tscn"),"STAGE_3")
+				load("res://Scenes/SwampBattleScene.tscn"),"STAGE_3")
 }
 
 func get_scene(scene_name : String) -> Scene:

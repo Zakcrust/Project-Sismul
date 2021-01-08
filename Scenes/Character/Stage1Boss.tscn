@@ -15,7 +15,6 @@
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_03/PNGSequences/Idle/Golem_03_Idle_002.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Sprites/chars/Golem/PNG/Golem_03/PNGSequences/Idle/Golem_03_Idle_001.png" type="Texture" id=14]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 10 ), ExtResource( 14 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 12 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ) ],
@@ -57,7 +56,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 10
+frame = 6
 playing = true
 
 [node name="Collider" type="CollisionShape2D" parent="."]

@@ -40,3 +40,9 @@ func transition_flicker() -> void:
 	yield($TransitionScene/AnimationPlayer, "animation_finished")
 	emit_signal("flicker_done")
 	$TransitionScene/ColorRect.hide()
+
+func is_enemy_avaiable() -> bool:
+	for child in get_children():
+		if child is EnemyCharacter:
+			return true
+	return false
