@@ -13,6 +13,8 @@ var dialog_count : int = 0
 #var dialogue_test : Array = stage_1.get_dialogues()
 
 var dialog_array : Array
+var input_enabled : bool = false
+
 
 signal next_dialog()
 signal dialog_failed()
@@ -21,6 +23,12 @@ signal dialog_success()
 
 #func _ready():
 #	get_tree().paused = true
+
+#func _input(event):
+#	if not input_enabled:
+#		return
+#	if Input.is_action_just_pressed("interact"):
+#		next()
 
 
 func load_dialog(dialogues : Array) -> void:
@@ -69,6 +77,7 @@ func read_dialog(dialog : Dialog) -> void:
 		yield($DialogContainer/Tween, "tween_all_completed")
 		$DialogContainer/Next.show()
 		dialog_array.clear()
+	input_enabled = true
 
 func check_answer(ans : String) -> void:
 	print("Checking answer ...")
@@ -86,6 +95,11 @@ func clear_answers() -> void:
 		child.queue_free()
 
 func _on_Next_pressed():
+	next()
+
+func next() -> void:
+	input_enabled = false
 	$DialogContainer/Next.hide()
 	$DialogContainer/Statement.percent_visible = 0
 	emit_signal("next_dialog")
+	print("next dialog...")

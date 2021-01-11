@@ -38,6 +38,7 @@ tracks/1/keys = {
 }
 
 [node name="GameOverCanvas" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 3 )
 
 [node name="GameOver" type="Control" parent="."]

@@ -8,6 +8,7 @@ var reward_ui : PackedScene = load("res://Scenes/UI/RewardUI.tscn")
 var boundary : Vector2 = Vector2(3200, 3160)
 
 signal flicker_done()
+signal game_over()
 
 func _ready():
 	$Camera2D.current = true
@@ -26,7 +27,6 @@ func remove_object() -> void:
 		object_to_interact.queue_free()
 
 func redeem_reward(reward) -> void:
-	remove_object()
 	print("Redeem rewards ...")
 	PlayerData.add_reward(reward)
 	var reward_ui_instance = reward_ui.instance()
@@ -36,6 +36,7 @@ func redeem_reward(reward) -> void:
 		reward_ui_instance.load_item(load(reward.sprite_path), reward.stat_type + "  +%s" % reward.reward.amount)
 	add_child(reward_ui_instance)
 	yield(reward_ui_instance,"tree_exited")
+	remove_object()
 	get_parent().show_ui()
 	SoundAndMusic.play_music(SoundAndMusic.PEKORA_BGM)
 	
@@ -54,4 +55,4 @@ func disable_camera() -> void:
 
 func activate() -> void:
 	$StateMachine.change_to("Move")
-	
+

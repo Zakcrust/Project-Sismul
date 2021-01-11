@@ -15,7 +15,7 @@ func _init(mult_choice_question_init : MultipleChoiceQuestion, time_init : float
 func get_question() -> MultipleChoiceQuestion:
 	return multiple_choice_question
 
-func get_reward() -> Reward:
+func get_reward():
 	return reward
 
 func get_time() -> float:

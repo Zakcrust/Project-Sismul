@@ -18,6 +18,7 @@ func enter() -> void:
 	fsm.emit_signal("disactivate_action_menu")
 	print("Current state : %s" % self.name)
 	yield(get_tree().create_timer(0.1), "timeout")
+	fsm.character.hide_pointer()
 	attack()
 
 func attack() -> void:

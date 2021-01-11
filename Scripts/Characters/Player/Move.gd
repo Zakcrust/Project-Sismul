@@ -51,6 +51,8 @@ func _interact() -> void:
 				fsm.character.object_to_interact.travel()
 			elif(fsm.character.object_to_interact.has_method("start_dialog")):
 				fsm.character.object_to_interact.start_dialog()
+			elif(fsm.character.object_to_interact.has_method("open_chest")):
+				fsm.character.object_to_interact.open_chest()
 			elif(fsm.character.object_to_interact.has_method("fight")):
 				fsm.character.flicker_transition()
 				yield(fsm.character, "flicker_done")

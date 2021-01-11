@@ -10,11 +10,25 @@ onready var target = $Target setget , get_target
 func _init():
 	stats = Stats.new(10,10,6,0,2) 
 	load_stats()
-	
+
+func multiply_stats(multiplier : float) -> void:
+	stats.health *= multiplier
+	stats.damage *= multiplier
+	stats.armor *= multiplier
+	stats.energy *= multiplier
+	stats.speed *= multiplier
+	load_stats()
+
 func _ready():
 	$Sprite/CharacterUI.set_health_bar_max_value(battle_stats.health)
-	$Anim.play("idle")
+	show_pointer()
 
+func show_pointer() -> void:
+	$Pointer.show()
+
+func hide_pointer() -> void:
+	$Pointer.hide()
+	
 func load_stats() -> void:
 	battle_stats.health = stats.health
 	battle_stats.damage = stats.damage
@@ -68,6 +82,7 @@ func hurt(damage : int) -> void:
 		$Sprite/CharacterUI.hide()
 		$BuffUI.hide()
 		$State.change_to("Dead")
+		$CollisionShape2D.call_deferred("set_disabled", true)
 		return
 	$Anim.play("hurt")
 	yield($Anim, "animation_finished")

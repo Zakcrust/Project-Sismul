@@ -3,7 +3,7 @@
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 
 [sub_resource type="DynamicFont" id=1]
-size = 108
+size = 84
 outline_size = 2
 outline_color = Color( 1, 0, 0, 1 )
 use_mipmaps = true
@@ -36,8 +36,8 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="."]
-margin_right = 14.0
-margin_bottom = 98.0
+margin_right = 10.0
+margin_bottom = 76.0
 custom_fonts/font = SubResource( 1 )
 text = "!"
 __meta__ = {

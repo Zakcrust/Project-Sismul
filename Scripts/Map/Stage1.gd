@@ -3,9 +3,14 @@ extends Node2D
 var FIRST_SPAWN_POSITION : Vector2 = Vector2(60,450)
 
 var player_scene : PackedScene = load("res://Scenes/Character/Player.tscn")
+var help_ui_scene : PackedScene = load("res://Scenes/UI/HelpUI.tscn")
+
 
 signal flicker_done()
 signal fade_in_done()
+
+func _ready():
+	add_child(help_ui_scene.instance())
 
 func spawn_player(pos : Vector2) -> void:
 	for child in get_children():

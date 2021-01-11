@@ -36,6 +36,12 @@ func _ready():
 	$Sprite.play("idle")
 	update_health_bar_ui()
 
+func show_pointer() -> void:
+	$Pointer.show()
+
+func hide_pointer() -> void:
+	$Pointer.hide()
+
 func check_buff() -> void:
 	var current_health = battle_stats.health
 	load_stats()

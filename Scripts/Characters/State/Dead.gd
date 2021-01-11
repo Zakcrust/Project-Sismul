@@ -12,6 +12,7 @@ func exit():
 func enter() -> void:
 	print("Current state : %s" % self.name)
 	fsm.sprite.play("dead")
+	fsm.character.hide_pointer()
 
 
 func process(_delta):

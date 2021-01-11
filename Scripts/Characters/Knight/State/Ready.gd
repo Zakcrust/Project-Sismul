@@ -14,6 +14,7 @@ func enter() -> void:
 	fsm.emit_signal("activate_action_menu")
 	print("Signal emitted")
 	fsm.sprite.play("idle")
+	fsm.character.show_pointer()
 	
 
 

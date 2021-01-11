@@ -34,10 +34,16 @@ func generate_aritmethic() -> MultipleChoiceQuestion:
 			a = randi() % 12 + 1
 			b = randi() % 12 + 1
 			result = a * b
-			question = "%s * %s = ..." % [a,b]
+			question = "%s x %s = ..." % [a,b]
 	answers.append(str(result))
+	var current_loop_answer = ""
+	var prev_loop_answer = "-"
 	for i in range(0, 3):
-		answers.append(str(result + (randi() % 20 - 10)))
+		current_loop_answer = str(result + (randi() % 20 - 10))
+		while(answers.has(current_loop_answer)):
+			current_loop_answer = str(result + (randi() % 20 - 10))
+		answers.append(current_loop_answer)
+		
 	
 	return MultipleChoiceQuestion.new(Question.new(question, str(result)), MultipleChoice.new(answers))
 

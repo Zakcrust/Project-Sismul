@@ -12,6 +12,7 @@ func exit():
 func enter() -> void:
 	print("Current state : %s" % self.name)
 	fsm.character.end_turn()
+	fsm.character.hide_pointer()
 	fsm.sprite.play("idle")
 
 

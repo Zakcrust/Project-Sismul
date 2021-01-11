@@ -31,7 +31,7 @@ var question_2_false_answer : Array = [
 var question_3_true_answer : Array = [
 	Dialog.new("Golem",
 	 "res://Assets/Sprites/chars/CloseUp/Golem/monster1.png",
-	"Good job. You have answered those questions correcly. now you may continue your journey traveller.",
+	"Congratulations. you have passed all of the trials. now you may redeem your prize at the end of the swamp",
 	DialogType.STATEMENT),
 ]
 

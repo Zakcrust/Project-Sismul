@@ -1,0 +1,129 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/UI/Quiz/mathchallengeui.png" type="Texture" id=1]
+[ext_resource path="res://Fonts/Header-dinrundschriftmittel.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/UI/Quiz/answerbox.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/UI/PopUpUI.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 96
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 76
+font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "play_anim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Background:value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 100.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PopUpText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Ok:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, false, true ]
+}
+
+[node name="PopUp" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="PopUpUI" type="Control" parent="."]
+pause_mode = 2
+margin_right = 2340.0
+margin_bottom = 1080.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="TextureProgress" parent="PopUpUI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -934.0
+margin_top = -438.5
+margin_right = 934.0
+margin_bottom = 438.5
+texture_progress = ExtResource( 1 )
+fill_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopUpText" type="Label" parent="PopUpUI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -600.0
+margin_top = -190.0
+margin_right = 600.0
+margin_bottom = -93.0
+custom_fonts/font = SubResource( 1 )
+text = "LOREN IPSUM DOLOR SI AMET"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ok" type="TextureButton" parent="PopUpUI"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -229.0
+margin_top = 152.5
+margin_right = 229.0
+margin_bottom = 275.5
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="PopUpUI/Ok"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 2 )
+text = "Ok"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PopUpUI"]
+autoplay = "play_anim"
+anims/play_anim = SubResource( 3 )
+[connection signal="pressed" from="PopUpUI/Ok" to="." method="_on_Ok_pressed"]

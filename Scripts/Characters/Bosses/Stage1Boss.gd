@@ -8,6 +8,7 @@ var dialog_data : GDScript = load("res://Scripts/Dialog/Resource/BossStage1/Stag
 var failed_dialog : GDScript = load("res://Scripts/Dialog/Resource/failed_dialog.gd")
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 var player_ref : Character
+var interacting : bool = false
 
 func _on_Detector_body_entered(body):
 	if body is Character:
@@ -24,6 +25,8 @@ func _on_Detector_body_exited(body):
 
 
 func start_dialog() -> void:
+	if interacting:
+		return
 	var dialog
 	if get_parent().is_enemy_avaiable():
 		dialog = failed_dialog.new()
@@ -34,6 +37,7 @@ func start_dialog() -> void:
 	dialog_instance.connect("dialog_success", self, "dialog_success")
 	dialog_instance.connect("dialog_failed", self, "dialog_failed")
 	dialog_instance.load_dialog(dialog.get_dialogues())
+	interacting = true
 	
 	
 
@@ -41,7 +45,10 @@ func dialog_success() -> void:
 	var reward_instance = reward.instance()
 	player_ref.redeem_reward(reward_instance)
 	player_ref.activate()
+	interacting = false
 	queue_free()
+	
 
 func dialog_failed() -> void:
 	player_ref.activate()
+	interacting = false

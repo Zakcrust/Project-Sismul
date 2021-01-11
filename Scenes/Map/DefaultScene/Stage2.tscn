@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scenes/Map/WinGateway.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Rewards/HPotionReward.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Character/MekaMongke.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Map/Stage2.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Map/Gateway.tscn" type="PackedScene" id=4]
@@ -11,8 +11,11 @@
 [ext_resource path="res://icon.png" type="Texture" id=9]
 [ext_resource path="res://Test/TransitionScene.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Battlers/MekaMongke.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scenes/Rewards/HealthPotionReward.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Scenes/Rewards/DamageReward.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/Utils/Rewards/DamageReward.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Rewards/AttackPotionReward.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/Utils/Rewards/ArmorReward.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Props/Chest.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Utils/Rewards/HealthRewards.gd" type="Script" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -67,9 +70,9 @@ target_spawn_position = Vector2( 3020, 2820 )
 stage = "STAGE_1"
 
 [node name="Gateway2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 3763.27, 2578.62 )
+position = Vector2( 3180, 2920 )
 scale = Vector2( 1, 2.56103 )
-target_spawn_position = Vector2( 0, 480 )
+target_spawn_position = Vector2( 385, 70 )
 stage = "STAGE_3"
 
 [node name="GameUI" parent="." instance=ExtResource( 5 )]
@@ -83,32 +86,31 @@ scale = Vector2( -0.4, 0.4 )
 reward = ExtResource( 7 )
 
 [node name="Sprite" parent="Stage2Boss" index="0"]
-frame = 3
+frame = 9
 
 [node name="Collider" parent="Stage2Boss" index="1"]
-position = Vector2( -72.5, 118.333 )
+position = Vector2( -132.5, 118.333 )
 
 [node name="Collider" parent="Stage2Boss/Detector" index="0"]
 position = Vector2( 0, 115 )
 
-[node name="Gateway3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3172.46, 2918.55 )
-scale = Vector2( 1, 2.56 )
-
 [node name="MekaMongke" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1171.85, 646.538 )
 battlers = [ ExtResource( 11 ), ExtResource( 11 ) ]
-reward = ExtResource( 12 )
+reward = ExtResource( 1 )
+stats_multiplier = 2.0
 
 [node name="MekaMongke2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2574.89, 377.55 )
 battlers = [ ExtResource( 11 ) ]
-reward = ExtResource( 12 )
+reward = ExtResource( 14 )
+reward_amount = 2
+stats_multiplier = 2.0
 
 [node name="MekaMongke3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1653.67, 1321.42 )
 battlers = [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ]
-reward = ExtResource( 12 )
+reward = ExtResource( 1 )
 
 [node name="MekaMongke4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2087.6, 2169.41 )
@@ -118,6 +120,59 @@ reward = ExtResource( 13 )
 [node name="MekaMongke5" parent="." instance=ExtResource( 2 )]
 position = Vector2( 963.817, 2632.06 )
 battlers = [ ExtResource( 11 ) ]
+reward = ExtResource( 1 )
+
+[node name="MekaMongke6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 294.156, 1267.14 )
+battlers = [ ExtResource( 11 ), ExtResource( 11 ) ]
 reward = ExtResource( 12 )
+reward_amount = 2
+stats_multiplier = 2.0
+
+[node name="MekaMongke7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 452.548, 1945.96 )
+battlers = [ ExtResource( 11 ), ExtResource( 11 ), ExtResource( 11 ) ]
+reward = ExtResource( 14 )
+
+[node name="MekaMongke8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 2941.56, 1368.96 )
+battlers = [ ExtResource( 11 ) ]
+reward = ExtResource( 13 )
+stats_multiplier = 2.0
+
+[node name="MekaMongke9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 181.02, 2579.53 )
+battlers = [ ExtResource( 11 ), ExtResource( 11 ) ]
+reward = ExtResource( 1 )
+
+[node name="Chest" parent="." instance=ExtResource( 15 )]
+position = Vector2( 901.644, 317.48 )
+reward = ExtResource( 12 )
+
+[node name="Chest2" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1805.49, 128.547 )
+reward = ExtResource( 16 )
+reward_amount = 3
+
+[node name="Chest3" parent="." instance=ExtResource( 15 )]
+position = Vector2( 2918.94, 893.783 )
+reward = ExtResource( 16 )
+reward_amount = 3
+
+[node name="Chest4" parent="." instance=ExtResource( 15 )]
+position = Vector2( 599.626, 1470.78 )
+reward = ExtResource( 14 )
+
+[node name="Chest5" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1233.19, 2138.29 )
+reward = ExtResource( 1 )
+
+[node name="Chest6" parent="." instance=ExtResource( 15 )]
+position = Vector2( 1466.52, 2744.69 )
+reward = ExtResource( 13 )
+
+[node name="Chest7" parent="." instance=ExtResource( 15 )]
+position = Vector2( 2585.98, 2293.37 )
+reward = ExtResource( 14 )
 
 [editable path="Stage2Boss"]

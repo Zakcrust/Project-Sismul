@@ -6,6 +6,7 @@ func _on_Inventory_pressed():
 	var instance = inventory_ui.instance()
 	instance.view_only()
 	instance.add_non_consumables(PlayerData.inventory.items)
+	instance.add_item(PlayerData.inventory.items)
 	add_child(instance)
 
 

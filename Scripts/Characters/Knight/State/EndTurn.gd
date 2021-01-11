@@ -15,6 +15,7 @@ func enter() -> void:
 	fsm.character.end_turn()
 	Minimax.player_root_node = fsm.character.minimax_node
 	fsm.sprite.play("idle")
+	fsm.character.hide_pointer()
 
 func process(_delta):
 	pass

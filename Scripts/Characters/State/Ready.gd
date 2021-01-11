@@ -10,6 +10,8 @@ func exit():
 
 func enter() -> void:
 	print("Current state : %s" % self.name)
+	fsm.character.show_pointer()
+	fsm.sprite.play("idle")
 
 
 func process(_delta):

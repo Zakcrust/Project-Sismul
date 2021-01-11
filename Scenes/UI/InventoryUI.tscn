@@ -1,16 +1,21 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/InventoryUI.gd" type="Script" id=2]
 [ext_resource path="res://Assets/UI/Inventory/inventory.png" type="Texture" id=3]
 [ext_resource path="res://Assets/UI/Inventory/usebutton.png" type="Texture" id=4]
-[ext_resource path="res://Assets/UI/Inventory/quitbutton.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/Gamebar/closebutton.png" type="Texture" id=5]
 
-[sub_resource type="StyleBoxLine" id=3]
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
 
-[sub_resource type="StyleBoxTexture" id=2]
+[sub_resource type="StyleBoxLine" id=8]
+color = Color( 1, 0.470588, 0, 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.945098, 0.819608, 0.541176, 1 )
+
+[sub_resource type="DynamicFont" id=7]
 size = 48
 font_data = ExtResource( 1 )
 
@@ -83,11 +88,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.00012207
 margin_bottom = -50.0
-custom_styles/bg_focus = SubResource( 3 )
-custom_styles/bg = SubResource( 2 )
-custom_fonts/font = SubResource( 1 )
-custom_colors/font_color_selected = Color( 1, 0.470588, 0, 1 )
-custom_colors/font_color = Color( 1, 0.470588, 0, 1 )
+custom_styles/selected_focus = SubResource( 4 )
+custom_styles/bg_focus = SubResource( 8 )
+custom_styles/bg = SubResource( 5 )
+custom_fonts/font = SubResource( 7 )
+custom_colors/font_color_selected = Color( 0.266667, 0.239216, 0.239216, 1 )
+custom_colors/font_color = Color( 0.266667, 0.239216, 0.239216, 1 )
 max_columns = 12
 same_column_width = true
 icon_mode = 0
@@ -134,13 +140,15 @@ __meta__ = {
 }
 
 [node name="Close" type="TextureButton" parent="InventoryUI/Button/HBoxContainer"]
-margin_right = 261.0
+margin_right = 257.0
 margin_bottom = 104.0
 texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
 
 [node name="Use" type="TextureButton" parent="InventoryUI/Button/HBoxContainer"]
-margin_left = 281.0
-margin_right = 542.0
+margin_left = 277.0
+margin_right = 538.0
 margin_bottom = 104.0
 disabled = true
 texture_normal = ExtResource( 4 )

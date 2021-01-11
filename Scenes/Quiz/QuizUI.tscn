@@ -25,7 +25,7 @@ size = 42
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 84
+size = 96
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
@@ -221,6 +221,7 @@ margin_bottom = 150.0
 rect_min_size = Vector2( 1000, 150 )
 custom_fonts/font = SubResource( 5 )
 text = "Contoh Pertanyaan"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Fonts/BoxesDream.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/Dialog/DialogUI.gd" type="Script" id=2]
@@ -17,6 +17,22 @@ size = 96
 outline_size = 5
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "next_anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1821.63, 373.529 ), Vector2( 1880, 373.529 ), Vector2( 1821.63, 373.529 ) ]
+}
 
 [node name="Dialog" type="CanvasLayer"]
 pause_mode = 2
@@ -86,14 +102,19 @@ __meta__ = {
 }
 
 [node name="Next" type="TextureButton" parent="DialogContainer"]
-margin_left = 1871.63
-margin_top = 403.529
-margin_right = 1938.63
-margin_bottom = 455.529
+margin_left = 1821.97
+margin_top = 373.529
+margin_right = 1888.97
+margin_bottom = 425.529
+rect_scale = Vector2( 1.5, 1.5 )
 texture_normal = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="DialogContainer/Next"]
+autoplay = "next_anim"
+anims/next_anim = SubResource( 3 )
 
 [node name="Tween" type="Tween" parent="DialogContainer"]
 
