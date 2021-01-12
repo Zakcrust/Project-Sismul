@@ -12,6 +12,8 @@ signal game_over()
 
 func _ready():
 	$Camera2D.current = true
+	if get_parent().has_node("GameUI"):
+		get_parent().get_node("GameUI").player_ref = self
 
 var object_to_interact setget set_object, get_object
 
@@ -56,3 +58,5 @@ func disable_camera() -> void:
 func activate() -> void:
 	$StateMachine.change_to("Move")
 
+func save_position() -> void:
+	PlayerData.current_position = global_position

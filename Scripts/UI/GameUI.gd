@@ -2,6 +2,8 @@ extends CanvasLayer
 
 var inventory_ui : PackedScene = load("res://Scenes/UI/InventoryUI.tscn")
 
+var player_ref : Character
+
 func _on_Inventory_pressed():
 	var instance = inventory_ui.instance()
 	instance.view_only()
@@ -33,7 +35,8 @@ func _on_Help_pressed():
 
 
 func _on_SaveAndQuit_pressed():
-	SceneLoader.save_scenes()
+	player_ref.save_position()
+	SaveManager.save()
 	get_tree().change_scene("res://Scenes/UI/MainMenu.tscn")
 
 

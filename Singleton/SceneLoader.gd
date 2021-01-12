@@ -1,7 +1,7 @@
 extends Node
 
 var current_scene : Scene
-
+var current_scene_name : String = ""
 var battle_scene : PackedScene
 
 var player_last_position : Vector2
@@ -30,6 +30,7 @@ func load_scene(scene : Scene, _spawn_pos : Vector2 = Vector2()):
 #		running_scene.fade_in()
 #		yield(running_scene, "fade_in_done")
 	get_tree().get_root().remove_child(running_scene)
+	current_scene_name = scene.scene_name
 	match(scene.scene_name):
 		scenes.STAGE_1:
 			for child in get_tree().get_root().get_children():
@@ -121,3 +122,10 @@ func save_scenes() -> void:
 		var packed_scene : PackedScene = PackedScene.new()
 		packed_scene.pack(stage)
 		ResourceSaver.save("res://Scenes/Map/SavedScene/Stage%s.tscn" % counter, packed_scene)
+
+func reset() -> void:
+	var dir : Directory = Directory.new()
+	for i in range(1, available_stages.size() + 1):
+		if dir.file_exists("res://Scenes/Map/SavedScene/Stage%s.tscn" % i):
+			dir.remove("res://Scenes/Map/SavedScene/Stage%s.tscn" % i)
+	current_scene_name = ""

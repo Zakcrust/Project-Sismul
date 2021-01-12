@@ -8,6 +8,19 @@
 [ext_resource path="res://Assets/UI/Gamebar/buttonhelp.png" type="Texture" id=6]
 [ext_resource path="res://Assets/UI/Gamebar/buttonsavequit.png" type="Texture" id=7]
 
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.756863, 1, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 0.470588, 0, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 96
+font_data = ExtResource( 1 )
+
 [sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
 
@@ -31,19 +44,6 @@ bg_color = Color( 0.756863, 1, 0, 1 )
 bg_color = Color( 1, 0.470588, 0, 1 )
 
 [sub_resource type="DynamicFont" id=12]
-size = 96
-font_data = ExtResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0.682353, 0.807843, 0.294118, 1 )
-
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0.756863, 1, 0, 1 )
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 1, 0.470588, 0, 1 )
-
-[sub_resource type="DynamicFont" id=16]
 size = 96
 font_data = ExtResource( 1 )
 
@@ -97,10 +97,10 @@ visible = false
 margin_left = 472.0
 margin_right = 668.0
 margin_bottom = 96.0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
-custom_fonts/font = SubResource( 8 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = true
 text = "Sound : ON"
 
@@ -109,10 +109,10 @@ visible = false
 margin_left = 472.0
 margin_right = 655.0
 margin_bottom = 96.0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
-custom_fonts/font = SubResource( 12 )
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+custom_fonts/font = SubResource( 8 )
 toggle_mode = true
 text = "Music : ON"
 
@@ -137,10 +137,10 @@ visible = false
 margin_left = 1105.0
 margin_right = 1488.0
 margin_bottom = 98.0
-custom_styles/hover = SubResource( 13 )
-custom_styles/pressed = SubResource( 14 )
-custom_styles/normal = SubResource( 15 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/normal = SubResource( 11 )
+custom_fonts/font = SubResource( 12 )
 text = "Quit Without Saving"
 [connection signal="pressed" from="GameUI/HBoxContainer/Inventory" to="." method="_on_Inventory_pressed"]
 [connection signal="pressed" from="GameUI/HBoxContainer/Options" to="." method="_on_Options_pressed"]

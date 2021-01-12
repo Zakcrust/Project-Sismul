@@ -40,3 +40,12 @@ func _on_MusicScroller_value_changed(value):
 func _on_Close_pressed():
 	get_tree().paused = false
 	queue_free()
+
+
+func _on_ResetData_pressed():
+	var confirm_ui = load("res://Scenes/UI/ResetDataConfirmUI.tscn").instance()
+	confirm_ui.connect("ok", self, "reset_data")
+	add_child(confirm_ui)
+
+func reset_data() -> void:
+	SaveManager.remove_save()
