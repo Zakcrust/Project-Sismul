@@ -2,7 +2,7 @@ extends Control
 
 func set_health_bar_max_value(max_value):
 	$VBoxContainer/CenterContainer/HealthBar.max_value = max_value
-	$VBoxContainer/CenterContainer/HealthBar.value = max_value
+#	$VBoxContainer/CenterContainer/HealthBar.value = max_value
 	$VBoxContainer/HealthLabel.text = "%s/%s" % [$VBoxContainer/CenterContainer/HealthBar.value, $VBoxContainer/CenterContainer/HealthBar.max_value]
 
 func set_health_bar(current_value):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Tileset/Nature.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Tileset/Props.tres" type="TileSet" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Props/WinningChest.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Quiz/Reward/Item/gold_ingot_reward.gd" type="Script" id=10]
+[ext_resource path="res://Test/TransitionScene.tscn" type="PackedScene" id=11]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -95,7 +96,7 @@ position = Vector2( 701.471, 718.681 )
 scale = Vector2( -0.4, 0.4 )
 
 [node name="Sprite" parent="Stage3Boss" index="0"]
-frame = 5
+frame = 2
 
 [node name="Collider" parent="Stage3Boss" index="1"]
 position = Vector2( 0.6901, 145.166 )
@@ -104,5 +105,7 @@ position = Vector2( 0.6901, 145.166 )
 position = Vector2( 3075.77, 1101.15 )
 chest_key = "STAGE_3"
 reward = ExtResource( 10 )
+
+[node name="TransitionScene" parent="." instance=ExtResource( 11 )]
 
 [editable path="Stage3Boss"]

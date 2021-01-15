@@ -45,14 +45,11 @@ func check_buff() -> void:
 	if battle_buff.damage_buff != null:
 		battle_stats.damage = battle_stats.damage + battle_buff.damage_buff.amount
 		$BuffUI.show_buff(battle_buff.damage_buff.buff_type)
-		print("Current damage : %s" % battle_stats.damage)
 	if battle_buff.speed_buff != null:
 		battle_stats.speed = battle_stats.speed + battle_buff.speed_buff.amount
 		$BuffUI.show_buff(battle_buff.speed_buff.buff_type)
 	if battle_buff.armour_buff != null:
-		print("Armor buff : %s" % battle_buff.armour_buff.amount)
 		battle_stats.armor = battle_stats.armor + battle_buff.armour_buff.amount
-		print("Armor has been increased to : %s" % battle_stats.armor)
 		$BuffUI.show_buff(battle_buff.armour_buff.buff_type)
 
 

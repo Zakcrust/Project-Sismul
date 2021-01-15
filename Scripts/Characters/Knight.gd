@@ -60,7 +60,8 @@ func check_buff() -> void:
 		$BuffUI.show_buff(battle_buff.armour_buff.buff_type)
 
 func update_health_bar_ui() -> void:
-	$CharacterUI.set_health_bar_max_value(battle_stats.health)
+	$CharacterUI.set_health_bar_max_value(stats.health)
+	$CharacterUI.set_health_bar(battle_stats.health)
 
 func get_stats() -> Stats:
 	return battle_stats

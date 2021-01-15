@@ -41,7 +41,9 @@ func dialog_success() -> void:
 	var reward_instance = reward.instance()
 	player_ref.redeem_reward(reward_instance)
 	player_ref.activate()
+	get_parent().show_ui()
 	queue_free()
 
 func dialog_failed() -> void:
+	get_parent().show_ui()
 	player_ref.activate()

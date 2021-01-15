@@ -44,16 +44,30 @@ func minimax(root : MinimaxNode ,children_amount : int , depth : int) -> Minimax
 
 func traverse_from_leaves_to_root(tree : MinimaxNode,nodes : Array) -> MinimaxNode:
 	var leaf : MinimaxNode
+	var current_parent : MinimaxNode
 	var counter : int = 0
 	for i in range(nodes.size() -1, 0, -1):
 		leaf = nodes[i]
-		if leaf.get_parent() == null:
-			pass
-		if leaf.get_parent().is_maximizer:
-			leaf.get_parent().score = leaf.score if leaf.score > leaf.get_parent().score else leaf.get_parent().score
-		else:
-			leaf.get_parent().score = leaf.score if leaf.score < leaf.get_parent().score else leaf.get_parent().score
-		leaf.get_parent().state = leaf.state if leaf.score == leaf.get_parent().score else leaf.get_parent().state
+#		if leaf.get_parent() == null:
+#			pass
+#		if leaf.get_parent().is_maximizer:
+#			leaf.get_parent().score = leaf.score if leaf.score > leaf.get_parent().score else leaf.get_parent().score
+#		else:
+#			leaf.get_parent().score = leaf.score if leaf.score < leaf.get_parent().score else leaf.get_parent().score
+#		leaf.get_parent().state = leaf.state if leaf.score == leaf.get_parent().score else leaf.get_parent().state
+		
+		if current_parent == leaf.get_parent():
+			continue
+		current_parent = leaf.get_parent()
+		
+		for current_parent_child in current_parent.get_children():
+			if current_parent.is_maximizer:
+				current_parent.score = current_parent_child.score if current_parent_child.score >= current_parent.score else current_parent.score
+				current_parent.state = current_parent_child.state if current_parent.score == current_parent_child.score else current_parent.state
+			else:
+				current_parent.score = current_parent_child.score if current_parent_child.score <= current_parent.score else current_parent.score
+				current_parent.state = current_parent_child.state if current_parent.score == current_parent_child.score else current_parent.state
+		
 		counter += 1
 		emit_signal("leaf_count", counter)
 	for child in tree.get_children():
