@@ -40,6 +40,7 @@ func initialize():
 		battler.connect("end_turn", self, "play_turn")
 	print("Current turn : %s" % active_character.name)
 	active_character.play_turn()
+	active_character.show_pointer()
 
 func get_battlers():
 	return get_children()
@@ -60,6 +61,7 @@ func play_turn():
 		pass
 	print("Current turn : %s" % active_character.name)
 	active_character.play_turn()
+	active_character.show_pointer()
 
 
 func living_enemies() -> bool:

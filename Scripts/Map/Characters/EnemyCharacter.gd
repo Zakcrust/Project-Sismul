@@ -7,21 +7,25 @@ export (GDScript) var reward
 export (int) var reward_amount = 1
 export (float) var stats_multiplier = 1
 
+var battlers_scenes : Array
+
 var battler_instances : Array
 var dialog_scene : PackedScene = load("res://Scenes/Dialog/DialogUI.tscn")
 
 
 func _ready():
 	for battler in battlers:
+		battlers_scenes.append(battler)
 		var instance = battler.instance()
-		instance.multiply_stats(stats_multiplier)
 		battler_instances.append(instance)
 
 func fight(player : PackedScene) -> void:
 	battler_instances.clear()
-	for battler in battlers:
+	for battler in battlers_scenes:
 		var instance = battler.instance()
 		battler_instances.append(instance)
+	for instance in battler_instances:
+		instance.multiply_stats(stats_multiplier)
 	print(battler_instances)
 	to_battle(player)
 

@@ -12,8 +12,11 @@ onready var sprite : Node = get_parent().get_node("Anim")
 
 var history = []
 
+signal initialize_done()
+
 func _ready():
 	initialize()
+	yield(self, "initialize_done")
 
 
 func initialize():
@@ -30,6 +33,7 @@ func back():
 	if history.size() > 0:
 		state = get_node(history.pop_back())
 		_enter_state()
+		
 
 func _enter_state():
 	if DEBUG:
@@ -37,6 +41,7 @@ func _enter_state():
 	# Give the new state a reference to this state machine script
 	state.fsm = self
 	state.enter()
+	emit_signal("initialize_done")
 
 # Route Game Loop function calls to
 # current state handler method if it exists

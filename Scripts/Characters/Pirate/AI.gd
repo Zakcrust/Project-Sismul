@@ -15,7 +15,7 @@ func play_turn() -> void:
 	
 
 func play_minimax_turn() -> void:
-	minimax_result = Minimax.minimax(Minimax.player_root_node, 3, 6)
+	minimax_result = Minimax.minimax(Minimax.player_root_node, 3, 7)
 	match(minimax_result.state):
 		MinimaxStates.ATTACK:
 			fsm.change_to("Attack")

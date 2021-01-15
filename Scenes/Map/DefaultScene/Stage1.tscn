@@ -100,6 +100,7 @@ reward = ExtResource( 16 )
 position = Vector2( 525.447, 984.217 )
 battlers = [ ExtResource( 8 ), ExtResource( 8 ) ]
 reward = ExtResource( 16 )
+stats_multiplier = 1.0
 
 [node name="MekaMongke5" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1917.83, 2265.44 )

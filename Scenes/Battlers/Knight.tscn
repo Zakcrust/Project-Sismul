@@ -74,6 +74,16 @@ animations = [ {
 "name": "idle",
 "speed": 15.0
 }, {
+"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "move",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "cast_skill_in",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 8 ), ExtResource( 1 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": false,
 "name": "attack",
@@ -88,16 +98,6 @@ animations = [ {
 "loop": false,
 "name": "dead",
 "speed": 20.0
-}, {
-"frames": [ ExtResource( 7 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 2 ) ],
-"loop": false,
-"name": "cast_skill_in",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 50 ), ExtResource( 45 ), ExtResource( 47 ), ExtResource( 42 ), ExtResource( 43 ), ExtResource( 49 ), ExtResource( 48 ), ExtResource( 44 ), ExtResource( 51 ), ExtResource( 46 ) ],
-"loop": true,
-"name": "move",
-"speed": 15.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 7 ) ],
 "loop": false,
@@ -290,7 +290,6 @@ margin_bottom = 197.839
 [node name="BuffUI" parent="." instance=ExtResource( 65 )]
 
 [node name="Pointer" parent="." instance=ExtResource( 66 )]
-visible = false
 margin_left = -58.0
 margin_top = -591.62
 margin_right = -26.0

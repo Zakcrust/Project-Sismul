@@ -6,6 +6,11 @@ var states : Array = [MinimaxStates.ATTACK,MinimaxStates.DEFEND,MinimaxStates.BO
 var player_state : MinimaxState = MinimaxState.new(2,1,3)
 var enemy_state : MinimaxState = MinimaxState.new(3,2,1)
 
+signal root_node(node)
+signal tree_depth(amount)
+signal leaf_count(amount)
+signal final_node(node)
+
 func _ready():
 	randomize()
 #	var result : MinimaxNode = minimax(MinimaxNode.new(MinimaxStates.DEFEND, player_state.get_score(MinimaxStates.DEFEND), true), 3, 6)
@@ -24,6 +29,8 @@ func _ready():
 #		print("state :%s | score : %s" % [child.state, child.score])
 
 func minimax(root : MinimaxNode ,children_amount : int , depth : int) -> MinimaxNode:
+	emit_signal("root_node", root)
+	emit_signal("tree_depth", depth)
 	var tree : MinimaxNode
 	var leaves : Array
 	for child in root.get_children():
@@ -37,6 +44,7 @@ func minimax(root : MinimaxNode ,children_amount : int , depth : int) -> Minimax
 
 func traverse_from_leaves_to_root(tree : MinimaxNode,nodes : Array) -> MinimaxNode:
 	var leaf : MinimaxNode
+	var counter : int = 0
 	for i in range(nodes.size() -1, 0, -1):
 		leaf = nodes[i]
 		if leaf.get_parent() == null:
@@ -46,13 +54,18 @@ func traverse_from_leaves_to_root(tree : MinimaxNode,nodes : Array) -> MinimaxNo
 		else:
 			leaf.get_parent().score = leaf.score if leaf.score < leaf.get_parent().score else leaf.get_parent().score
 		leaf.get_parent().state = leaf.state if leaf.score == leaf.get_parent().score else leaf.get_parent().state
+		counter += 1
+		emit_signal("leaf_count", counter)
 	for child in tree.get_children():
+		counter+=1
+		emit_signal("leaf_count", counter)
 		if tree.is_maximizer:
 			tree.score = child.score if child.score > tree.score else tree.score
 			tree.state = child.state if tree.score == child.score else tree.state
 		else:
 			tree.score = child.score if child.score < tree.score else tree.score
 			tree.state = child.state if tree.score == child.score else tree.state
+	emit_signal("final_node", tree)
 	return tree
 
 func get_all_children(root : MinimaxNode, children_nodes : Array = [], minimax_nodes : Array = []) -> Array:

@@ -10,6 +10,7 @@ func _ready():
 	
 	for point in $EnemySpawnPoints.get_children():
 		enemy_spawn_points.append(point)
+	add_child(load("res://Scenes/UI/MinimaxDebugUI.tscn").instance())
 
 func add_battlers(battlers : Array):
 	battlers.sort_custom(self, "sort_battlers")

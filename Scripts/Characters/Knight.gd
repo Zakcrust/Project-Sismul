@@ -11,7 +11,7 @@ var battle_stats : Stats = Stats.new(0,0,0,0,0)
 var battle_buff : StatsBuff = StatsBuff.new()
 
 var minimax_node : MinimaxNode = MinimaxNode.new(0,0,true)
-
+var damage_notifier = load("res://Scenes/UI/PropNotifier/DamageNotifier.tscn")
 onready var target : Position2D = $Target setget , get_target
 
 func _init():
@@ -95,14 +95,17 @@ func stats_report() -> void:
 
 func hurt(damage : int) -> void:
 	get_parent().player_ref = self
-	print("damage dealt : %s" % (damage - battle_stats.armor))
-	battle_stats.health -= (damage - battle_stats.armor)
+	var damage_dealt : int = damage - battle_stats.armor if damage - battle_stats.armor > 0 else 0
+	notify_damage(damage_dealt)
+	print("damage dealt : %s" % damage_dealt)
+	battle_stats.health -= (damage_dealt)
 	$CharacterUI.set_health_bar(battle_stats.health)
 	$Sprite.play("hurt")
 	yield($Sprite, "animation_finished")
 	$Sprite.play("idle")
 	check_health()
 	stats_report()
+	
 
 func get_current_state() -> String:
 	return $State.state.name
@@ -127,3 +130,9 @@ func revive(_reward) -> void:
 	$CharacterUI.set_health_bar(battle_stats.health)
 	yield(get_tree().create_timer(0.5), "timeout")
 	$State.change_to("Ready")
+
+func notify_damage(amount : int) -> void:
+	var notifier = damage_notifier.instance()
+	notifier.set_text(str(amount))
+	notifier.set_position(global_position)
+	add_child(notifier)

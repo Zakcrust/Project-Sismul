@@ -5,6 +5,7 @@ signal end_turn
 var stats : Stats
 var battle_stats : Stats  = Stats.new(0,0,0,0,0)
 var battle_buff : StatsBuff = StatsBuff.new()
+var damage_notifier = load("res://Scenes/UI/PropNotifier/DamageNotifier.tscn")
 onready var target = $Target setget , get_target
 
 func _init():
@@ -12,16 +13,16 @@ func _init():
 	load_stats()
 
 func multiply_stats(multiplier : float) -> void:
-	stats.health *= multiplier
-	stats.damage *= multiplier
-	stats.armor *= multiplier
-	stats.energy *= multiplier
-	stats.speed *= multiplier
+	stats.health = stats.health * multiplier
+	stats.damage = stats.damage * multiplier
+	stats.armor  = stats.armor * multiplier
+	stats.energy = stats.energy * multiplier
+	stats.speed  = stats.speed * multiplier
+	print("Modified speed : %s" % stats.speed)
 	load_stats()
 
 func _ready():
 	$Sprite/CharacterUI.set_health_bar_max_value(battle_stats.health)
-	show_pointer()
 
 func show_pointer() -> void:
 	$Pointer.show()
@@ -73,7 +74,9 @@ func end_turn() -> void:
 
 
 func hurt(damage : int) -> void:
-	battle_stats.health -= (damage - battle_stats.armor)
+	var damage_dealt : int = damage - battle_stats.armor if damage - battle_stats.armor > 0 else 0
+	battle_stats.health -= (damage_dealt)
+	notify_damage(damage_dealt)
 	$Sprite/CharacterUI.set_health_bar(battle_stats.health)
 	if check_dead():
 		battle_stats.health = 0
@@ -97,3 +100,9 @@ func get_current_state() -> String:
 func victory() -> void:
 	$Anim.stop()
 	$Anim.play("idle")
+
+func notify_damage(amount : int) -> void:
+	var notifier = damage_notifier.instance()
+	notifier.set_text(str(amount))
+	notifier.set_position(global_position)
+	add_child(notifier)
