@@ -9,23 +9,23 @@
 [ext_resource path="res://Fonts/Header-dinrundschriftmittel.otf" type="DynamicFontData" id=7]
 
 [sub_resource type="DynamicFont" id=1]
-size = 42
+size = 48
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 42
+size = 48
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 42
+size = 48
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 42
+size = 48
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=5]
-size = 96
+size = 108
 outline_size = 3
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
